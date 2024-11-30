@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dominion Supply Generator</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
+        .card { margin: 5px; font-size: 1.2em; }
+        .settings { margin: 10px; }
+        .saved-set { margin: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Dominion Supply Generator</h1>
+    <div class="settings">
+        <label>
+            <input type="checkbox" id="include-attack" checked>
+            Include Attack Cards
+        </label><br>
+        <label>
+            <input type="checkbox" id="balanced-cost" checked>
+            Ensure Balanced Costs
+        </label>
+    </div>
+    <button onclick="generateSupply()">Generate Supply</button>
+    <div id="supply-list"></div>
+    <div>
+        <h2>Save Your Favorite Sets</h2>
+        <input type="text" id="set-name" placeholder="Name this set">
+        <button onclick="saveSet()">Save Set</button>
+        <div id="saved-sets"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
