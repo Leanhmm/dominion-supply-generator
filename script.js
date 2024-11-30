@@ -93,7 +93,6 @@ const guildsCornucopiaCards = [
     { name: "Stonemason", cost: 2, type: "Action" },
     { name: "Taxman", cost: 4, type: "Attack, Action" }
 ];
-];
 
 function generateSupply() {
     const includeAttack = document.getElementById("include-attack").checked;
