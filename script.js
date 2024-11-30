@@ -1,6 +1,5 @@
-const allCards = [
-    // Base Set (Box 1)
-    { name: "Artisan", cost: 6, type: "Action" },
+const baseSetCards = [
+ { name: "Artisan", cost: 6, type: "Action" },
     { name: "Bandit", cost: 5, type: "Attack, Action" },
     { name: "Bureaucrat", cost: 4, type: "Attack, Action" },
     { name: "Cellar", cost: 2, type: "Action" },
@@ -26,9 +25,10 @@ const allCards = [
     { name: "Witch", cost: 5, type: "Attack, Action" },
     { name: "Workshop", cost: 3, type: "Action" },
     { name: "Gardens", cost: 4, type: "Victory" },
+];
 
-    // Dark Ages (Box 2)
-    { name: "Altar", cost: 6, type: "Action" },
+const darkAgesCards = [
+      { name: "Altar", cost: 6, type: "Action" },
     { name: "Ironmonger", cost: 4, type: "Action" },
     { name: "Poor House", cost: 1, type: "Action" },
     { name: "Bandit Camp", cost: 5, type: "Action" },
@@ -63,8 +63,9 @@ const allCards = [
     { name: "Counterfeit", cost: 5, type: "Treasure" },
     { name: "Pillage", cost: 5, type: "Attack, Action" },
     { name: "Beggar", cost: 2, type: "Reaction, Action" },
+];
 
-    // Guilds and Cornucopia (Box 3)
+const guildsCornucopiaCards = [
     { name: "Farming Village", cost: 4, type: "Action" },
     { name: "Fortune Teller", cost: 3, type: "Attack, Action" },
     { name: "Hamlet", cost: 2, type: "Action" },
@@ -92,17 +93,27 @@ const allCards = [
     { name: "Stonemason", cost: 2, type: "Action" },
     { name: "Taxman", cost: 4, type: "Attack, Action" }
 ];
-
-let savedSets = [];
+];
 
 function generateSupply() {
     const includeAttack = document.getElementById("include-attack").checked;
     const balancedCost = document.getElementById("balanced-cost").checked;
+    const includeBaseSet = document.getElementById("include-base-set").checked;
+    const includeDarkAges = document.getElementById("include-dark-ages").checked;
+    const includeGuildsCornucopia = document.getElementById("include-guilds-cornucopia").checked;
 
-    let filteredCards = includeAttack
-        ? allCards
-        : allCards.filter(card => !card.type.includes("Attack"));
+    // Combine selected sets
+    let filteredCards = [];
+    if (includeBaseSet) filteredCards = filteredCards.concat(baseSetCards);
+    if (includeDarkAges) filteredCards = filteredCards.concat(darkAgesCards);
+    if (includeGuildsCornucopia) filteredCards = filteredCards.concat(guildsCornucopiaCards);
 
+    // Apply the "Include Attack" filter
+    if (!includeAttack) {
+        filteredCards = filteredCards.filter(card => !card.type.includes("Attack"));
+    }
+
+    // Generate the supply
     let supply = [];
     if (balancedCost) {
         const costs = [2, 3, 4, 5, 6];
@@ -114,7 +125,8 @@ function generateSupply() {
         });
     }
 
-    while (supply.length < 10) {
+    // Add random cards until we have 10
+    while (supply.length < 10 && filteredCards.length > 0) {
         const randomCard = filteredCards[Math.floor(Math.random() * filteredCards.length)];
         if (!supply.includes(randomCard)) {
             supply.push(randomCard);
