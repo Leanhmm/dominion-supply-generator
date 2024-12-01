@@ -186,12 +186,10 @@ function displaySupply(supply) {
                     img.src = "images/default.jpg"; // Fallback image if the original is missing
                 };
 
-                const details = document.createElement("p");
-                details.textContent = `${card.name} (Cost: ${card.cost}, Type: ${card.type})`;
+            
 
                 cardElement.appendChild(img);
-                cardElement.appendChild(details);
-
+             
                 supplyList.appendChild(cardElement);
             }
         }
