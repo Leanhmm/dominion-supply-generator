@@ -150,6 +150,21 @@ function getAdditionalSetupCards(supply) {
         "Witch": { name: "Curse", image: "images/Curse.jpg" },
         "Young Witch": { name: "Curse", image: "images/Curse.jpg" },
         "Jester": { name: "Curse", image: "images/Curse.jpg" },
+        "Baker": { name: "Coffers", image: "images/Coffers.jpg" },
+       "Butcher": { name: "Coffers", image: "images/Coffers.jpg" },
+       "Candlestick Maker": { name: "Coffers", image: "images/Coffers.jpg" },
+       "Plaza": { name: "Coffers", image: "images/Coffers.jpg" },
+       "Merchant Guild": { name: "Coffers", image: "images/Coffers.jpg" },
+       "Hermit": { name: "Madman", image: "images/Madman.jpg" },
+       "Urchin": { name: "Mercenary", image: "images/Mercenary.jpg" },
+       "Tournament": { name: "Prizes", image: "images/Prizes.jpg" },
+       "Cultist": { name: "Ruins", image: "images/Ruins.jpg" },
+        "Death Cart": { name: "Ruins", image: "images/Ruins.jpg" },
+        "Marauder": { name: "Ruins", image: "images/Ruins.jpg" },
+        "Marauder": { name: "Spoils", image: "images/Spoils.jpg" },
+            "Pillage": { name: "Spoils", image: "images/Spoils.jpg" },
+            "Bandit Camp": { name: "Spoils", image: "images/Spoils.jpg" },
+
         // Add other special cards and their setup requirements here
     };
 
