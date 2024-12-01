@@ -4,61 +4,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dominion Supply Generator</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link to the external CSS file -->
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
+        .card { margin: 5px; font-size: 1.2em; }
+        .settings { margin: 10px; }
+        .saved-set { margin: 5px; }
+    </style>
+<style>
+    /* Style for the supply list grid */
+    #supply-list {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr); /* 5 columns */
+        gap: 16px; /* Space between grid items */
+        max-width: 1000px; /* Optional: Set max width for the grid */
+        margin: 0 auto; /* Center the grid */
+    }
+
+    /* Style for individual card elements */
+    .card img {
+        width: 100%; /* Images take full width of the grid cell */
+        height: auto; /* Maintain aspect ratio */
+        border-radius: 8px; /* Rounded corners */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add shadow */
+    }
+
+    .card p {
+        text-align: center; /* Center align the text */
+        font-size: 14px; /* Smaller text size */
+        margin-top: 8px; /* Space between image and text */
+    }
+</style>
+
+    
 </head>
 <body>
-
     <h1>Dominion Supply Generator</h1>
-
-    <div>
-        <!-- Include Attack Cards -->
-        <div class="toggle-switch">
-            <input type="checkbox" id="include-attack" class="toggle-input">
-            <label for="include-attack" class="toggle-label"></label>
-            <span>Include Attack Cards</span>
-        </div>
-
-        <!-- Balanced Cost -->
-        <div class="toggle-switch">
-            <input type="checkbox" id="balanced-cost" class="toggle-input">
-            <label for="balanced-cost" class="toggle-label"></label>
-            <span>Balanced Cost</span>
-        </div>
-
-        <!-- Include Base Set -->
-        <div class="toggle-switch">
-            <input type="checkbox" id="include-base-set" class="toggle-input">
-            <label for="include-base-set" class="toggle-label"></label>
-            <span>Include Base Set</span>
-        </div>
-
-        <!-- Include Dark Ages -->
-        <div class="toggle-switch">
-            <input type="checkbox" id="include-dark-ages" class="toggle-input">
-            <label for="include-dark-ages" class="toggle-label"></label>
-            <span>Include Dark Ages</span>
-        </div>
-
-        <!-- Include Guilds and Cornucopia -->
-        <div class="toggle-switch">
-            <input type="checkbox" id="include-guilds-cornucopia" class="toggle-input">
-            <label for="include-guilds-cornucopia" class="toggle-label"></label>
-            <span>Include Guilds & Cornucopia</span>
-        </div>
-
-        <!-- Generate Supply Button -->
-        <button id="generate-supply">Generate Supply</button>
+    <div class="settings">
+        <label>
+            <input type="checkbox" id="include-attack" checked>
+            Include Attack Cards
+        </label><br>
+        <label>
+            <input type="checkbox" id="balanced-cost" checked>
+            Ensure Balanced Costs
+        </label><br>
+        <h3>Select Card Sets:</h3>
+        <label>
+            <input type="checkbox" id="include-base-set" checked>
+            Base Set
+        </label><br>
+        <label>
+            <input type="checkbox" id="include-dark-ages" checked>
+            Dark Ages
+        </label><br>
+        <label>
+            <input type="checkbox" id="include-guilds-cornucopia" checked>
+            Guilds & Cornucopia
+        </label>
     </div>
-
+    <button onclick="generateSupply()">Generate Supply</button>
     <div id="supply-list"></div>
-
     <div>
-        <input type="text" id="set-name" placeholder="Enter Set Name">
+        <h2>Save Your Favorite Sets</h2>
+        <input type="text" id="set-name" placeholder="Name this set">
         <button onclick="saveSet()">Save Set</button>
+        <div id="saved-sets"></div>
     </div>
 
-    <div id="saved-sets"></div>
-
-    <script src="script.js"></script> <!-- Link to the external JavaScript file -->
+    <script src="script.js"></script>
 </body>
 </html>
