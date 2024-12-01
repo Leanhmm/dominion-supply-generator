@@ -136,17 +136,41 @@ function generateSupply() {
 }
 
 function displaySupply(supply) {
+    // Sort the supply cards by cost
+    supply.sort((a, b) => a.cost - b.cost);
+
     const supplyList = document.getElementById("supply-list");
     supplyList.innerHTML = ""; // Clear previous supply
-    supply.forEach(card => {
-        const cardElement = document.createElement("div");
-        cardElement.className = "card";
-        cardElement.innerHTML = `
-            <img src="${card.image}" alt="${card.name}" style="width: 100%; max-width: 200px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-            <p>${card.name} (Cost: ${card.cost}, Type: ${card.type})</p>
-        `;
-        supplyList.appendChild(cardElement);
-    });
+
+    // Display cards in a 2x5 grid, column-wise
+    const rows = 2; // Number of rows
+    const cols = 5; // Number of columns
+    for (let col = 0; col < cols; col++) {
+        for (let row = 0; row < rows; row++) {
+            const index = col + row * cols; // Calculate index for column-wise sorting
+            if (index < supply.length) {
+                const card = supply[index];
+
+                const cardElement = document.createElement("div");
+                cardElement.className = "card";
+
+                const img = document.createElement("img");
+                img.src = card.image;
+                img.alt = card.name;
+                img.onerror = () => {
+                    img.src = "images/default.jpg"; // Fallback image if the original is missing
+                };
+
+                const details = document.createElement("p");
+                details.textContent = `${card.name} (Cost: ${card.cost}, Type: ${card.type})`;
+
+                cardElement.appendChild(img);
+                cardElement.appendChild(details);
+
+                supplyList.appendChild(cardElement);
+            }
+        }
+    }
 }
 
 function saveSet() {
