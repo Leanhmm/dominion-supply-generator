@@ -155,21 +155,26 @@ function displaySupply(supply) {
 
     supplyList.innerHTML = ""; // Clear previous supply
 
-    // Create an array to hold the columns
     const rows = 2; // Number of rows
     const cols = 5; // Number of columns
-    let columns = Array(cols).fill([]); // Initialize empty columns
+    const totalCards = rows * cols; // Total number of cards to display (should be 10)
 
-    // Distribute the cards into columns (top to bottom)
+    // Ensure there are exactly 10 cards to display
+    supply = supply.slice(0, totalCards);
+
+    // Create an array to hold the columns
+    let columns = Array(cols).fill().map(() => []);
+
+    // Distribute cards across columns
     for (let i = 0; i < supply.length; i++) {
-        const colIndex = i % cols;  // Calculate which column to put the card in
-        columns[colIndex].push(supply[i]); // Add card to the column
+        const colIndex = i % cols;  // Calculate column index
+        columns[colIndex].push(supply[i]); // Add card to the appropriate column
     }
 
-    // Now, we display the cards row by row
+    // Now, we need to display cards row by row
     for (let row = 0; row < rows; row++) {
         for (let col = 0; col < cols; col++) {
-            const card = columns[col][row];
+            const card = columns[col][row];  // Get the card for the current row and column
             if (card) {
                 const cardElement = document.createElement("div");
                 cardElement.className = "card";
@@ -195,6 +200,7 @@ function displaySupply(supply) {
 
 // Example usage (ensure this is connected to your button):
 document.getElementById("generate-supply").addEventListener("click", generateSupply);
+
 
 
 function saveSet() {
