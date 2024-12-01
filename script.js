@@ -167,7 +167,7 @@ function displaySupply(supply) {
 
     // Distribute cards across columns
     for (let i = 0; i < supply.length; i++) {
-        const colIndex = i % cols;  // Calculate column index
+        const colIndex = Math.floor(i / rows);  // Calculate column index (distribute by rows)
         columns[colIndex].push(supply[i]); // Add card to the appropriate column
     }
 
@@ -200,6 +200,7 @@ function displaySupply(supply) {
 
 // Example usage (ensure this is connected to your button):
 document.getElementById("generate-supply").addEventListener("click", generateSupply);
+
 
 
 
