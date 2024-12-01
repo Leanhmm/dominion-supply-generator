@@ -155,18 +155,18 @@ function displaySupply(supply) {
 
     supplyList.innerHTML = ""; // Clear previous supply
 
-    // Create an array to hold the cards by column
+    // Create an array to hold the columns
     const rows = 2; // Number of rows
     const cols = 5; // Number of columns
-    let columns = Array(cols).fill([]); // Create an array to hold columns
+    let columns = Array(cols).fill([]); // Initialize empty columns
 
-    // Distribute the sorted cards into columns
+    // Distribute the cards into columns (top to bottom)
     for (let i = 0; i < supply.length; i++) {
-        const colIndex = i % cols;  // Distribute cards into columns
-        columns[colIndex] = [...columns[colIndex], supply[i]]; // Add card to column
+        const colIndex = i % cols;  // Calculate which column to put the card in
+        columns[colIndex].push(supply[i]); // Add card to the column
     }
 
-    // Display the cards in the 2x5 grid by rows and columns
+    // Now, we display the cards row by row
     for (let row = 0; row < rows; row++) {
         for (let col = 0; col < cols; col++) {
             const card = columns[col][row];
