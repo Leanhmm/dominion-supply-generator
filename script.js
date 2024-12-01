@@ -94,7 +94,7 @@ const guildsCornucopiaCards = [
     { name: "Taxman", cost: 4, type: "Attack, Action", image: "images/Taxman.jpg" }
 ];
 
-let savedSets = [];
+let savedSets = []; // To store saved sets
 
 function generateSupply() {
     const includeAttack = document.getElementById("include-attack").checked;
@@ -103,21 +103,18 @@ function generateSupply() {
     const includeDarkAges = document.getElementById("include-dark-ages").checked;
     const includeGuildsCornucopia = document.getElementById("include-guilds-cornucopia").checked;
 
-    // Combine selected sets
     let filteredCards = [];
     if (includeBaseSet) filteredCards = filteredCards.concat(baseSetCards);
     if (includeDarkAges) filteredCards = filteredCards.concat(darkAgesCards);
     if (includeGuildsCornucopia) filteredCards = filteredCards.concat(guildsCornucopiaCards);
 
-    // Apply the "Include Attack" filter
     if (!includeAttack) {
         filteredCards = filteredCards.filter(card => !card.type.includes("Attack"));
     }
 
-    // Generate the supply
     let supply = [];
     if (balancedCost) {
-        const costs = [2, 3, 4, 5];
+        const costs = [2, 3, 4, 5, 6];
         costs.forEach(cost => {
             const costCards = filteredCards.filter(card => card.cost === cost);
             if (costCards.length > 0) {
@@ -126,7 +123,6 @@ function generateSupply() {
         });
     }
 
-    // Add random cards until we have 10
     while (supply.length < 10 && filteredCards.length > 0) {
         const randomCard = filteredCards[Math.floor(Math.random() * filteredCards.length)];
         if (!supply.includes(randomCard)) {
@@ -142,11 +138,8 @@ function displaySupply(supply) {
     supplyList.innerHTML = ""; // Clear previous supply
     supply.forEach(card => {
         const cardElement = document.createElement("div");
+        cardElement.textContent = `${card.name} (Cost: ${card.cost}, Type: ${card.type})`;
         cardElement.className = "card";
-        cardElement.innerHTML = `
-            <img src="${card.image}" alt="${card.name}" style="width: 100%; max-width: 200px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-            <p>${card.name} (Cost: ${card.cost}, Type: ${card.type})</p>
-        `;
         supplyList.appendChild(cardElement);
     });
 }
@@ -171,3 +164,12 @@ function displaySavedSets() {
     savedSetsDiv.innerHTML = ""; // Clear previous saved sets
 
     savedSets.forEach(set => {
+        const setElement = document.createElement("div");
+        setElement.className = "saved-set";
+        setElement.innerHTML = `
+            <strong>${set.name}</strong><br>
+            ${set.cards.join("<br>")}
+        `;
+        savedSetsDiv.appendChild(setElement);
+    });
+}
