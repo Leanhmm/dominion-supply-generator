@@ -42,13 +42,13 @@
             margin-top: 8px; /* Space between image and text */
         }
 
-        /* Style for the toggle switches */
+        /* Style for the toggle switches (25% smaller) */
         .switch {
             position: relative;
             display: inline-block;
-            width: 60px;
-            height: 34px;
-            margin: 10px; /* Space between switches */
+            width: 45px; /* 25% smaller than before (60px) */
+            height: 25px; /* 25% smaller than before (34px) */
+            margin: 5px; /* Reduced gap between switches */
         }
 
         .switch input {
@@ -72,8 +72,8 @@
         .slider:before {
             position: absolute;
             content: "";
-            height: 26px;
-            width: 26px;
+            height: 18px; /* Reduced size of the slider's knob */
+            width: 18px; /* Reduced size of the slider's knob */
             border-radius: 50%;
             left: 4px;
             bottom: 4px;
@@ -86,7 +86,7 @@
         }
 
         input:checked + .slider:before {
-            transform: translateX(26px);
+            transform: translateX(20px); /* Adjusted the transform to fit the smaller switch */
         }
 
         /* Style for the settings container */
@@ -103,7 +103,7 @@
             display: flex;
             align-items: center; /* Align items vertically */
             justify-content: flex-start; /* Align items to the left */
-            margin: 10px 0; /* Space between items */
+            margin: 5px 0; /* Reduced space between switches */
             width: 100%; /* Ensure it takes full width */
         }
 
