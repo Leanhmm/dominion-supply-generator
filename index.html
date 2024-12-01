@@ -9,46 +9,46 @@
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
-            background: url('https://cdna.artstation.com/p/assets/images/images/009/330/096/large/tomasz-jedruszek-asdominion-2nd.jpg?1518377966') no-repeat center center fixed; /* Background image */
-            background-size: cover; /* Ensure the image covers the entire screen */
-            color: white; /* White text color for better readability */
-            height: 100vh; /* Ensure the body takes full viewport height */
+            background: url('https://cdna.artstation.com/p/assets/images/images/009/330/096/large/tomasz-jedruszek-asdominion-2nd.jpg?1518377966') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+            height: 100vh;
             display: flex;
-            justify-content: flex-start; /* Align content to the left */
-            align-items: flex-start; /* Align content to the top */
-            flex-direction: column; /* Stack elements vertically */
+            justify-content: flex-start;
+            align-items: flex-start;
+            flex-direction: column;
         }
 
         /* Style for the supply list grid */
         #supply-list {
             display: grid;
-            grid-template-columns: repeat(5, 1fr); /* 5 columns */
-            gap: 16px; /* Space between grid items */
-            max-width: 1000px; /* Optional: Set max width for the grid */
-            margin: 0 auto; /* Center the grid */
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
         /* Style for individual card elements */
         .card img {
-            width: 100%; /* Images take full width of the grid cell */
-            height: auto; /* Maintain aspect ratio */
-            border-radius: 8px; /* Rounded corners */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add shadow */
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .card p {
-            text-align: center; /* Center align the text */
-            font-size: 14px; /* Smaller text size */
-            margin-top: 8px; /* Space between image and text */
+            text-align: center;
+            font-size: 14px;
+            margin-top: 8px;
         }
 
-        /* Style for the toggle switches (25% smaller) */
+        /* Style for the toggle switches */
         .switch {
             position: relative;
             display: inline-block;
-            width: 45px; /* 25% smaller than before (60px) */
-            height: 25px; /* 25% smaller than before (34px) */
-            margin: 5px; /* Reduced gap between switches */
+            width: 45px;
+            height: 25px;
+            margin: 5px;
         }
 
         .switch input {
@@ -72,8 +72,8 @@
         .slider:before {
             position: absolute;
             content: "";
-            height: 18px; /* Reduced size of the slider's knob */
-            width: 18px; /* Reduced size of the slider's knob */
+            height: 18px;
+            width: 18px;
             border-radius: 50%;
             left: 4px;
             bottom: 4px;
@@ -82,33 +82,32 @@
         }
 
         input:checked + .slider {
-            background-color: #9B30FF; /* Purple when on */
+            background-color: #9B30FF;
         }
 
         input:checked + .slider:before {
-            transform: translateX(20px); /* Adjusted the transform to fit the smaller switch */
+            transform: translateX(20px);
         }
 
         /* Style for the settings container */
         .settings {
             display: flex;
-            flex-direction: column; /* Stack switches vertically */
-            align-items: flex-start; /* Align switches to the left */
+            flex-direction: column;
+            align-items: flex-start;
             margin: 10px;
-            width: 100%; /* Ensure settings take full width */
+            width: 100%;
         }
 
-        /* Align switch label and text side by side */
         .switch-container {
             display: flex;
-            align-items: center; /* Align items vertically */
-            justify-content: flex-start; /* Align items to the left */
-            margin: 5px 0; /* Reduced space between switches */
-            width: 100%; /* Ensure it takes full width */
+            align-items: center;
+            justify-content: flex-start;
+            margin: 5px 0;
+            width: 100%;
         }
 
         .switch-container label {
-            margin-left: 10px; /* Add space between switch and label */
+            margin-left: 10px;
             font-size: 1.2em;
         }
     </style>
@@ -161,14 +160,5 @@
 
     <button onclick="generateSupply()">Generate Supply</button>
     <div id="supply-list"></div>
-    <div>
-        <h2>Save Your Favorite Sets</h2>
-        <input type="text" id="set-name" placeholder="Name this set">
-        <button onclick="saveSet()">Save Set</button>
-        <div id="saved-sets"></div>
-    </div>
-
-    <script src="script.js"></script>
 </body>
 </html>
-
