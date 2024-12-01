@@ -213,13 +213,9 @@ function saveSet() {
         return;
     }
 
-    const setCards = supplyList.map(el => {
-        const card = el.querySelector("img").alt; // Get the card name from image alt
-        const cardData = filteredCards.find(card => card.name === card); // Find the full card data
-        return cardData;
-    });
-
+    const setCards = supplyList.map(el => el.textContent);
     savedSets.push({ name: setName, cards: setCards });
+
     displaySavedSets();
 }
 
@@ -232,14 +228,12 @@ function displaySavedSets() {
         setElement.className = "saved-set";
         setElement.innerHTML = `
             <strong>${set.name}</strong><br>
-            ${set.cards.map(card => `
-                <div>
-                    <img src="${card.image}" alt="${card.name}" width="50">
-                    <p>${card.name} (Cost: ${card.cost}, Type: ${card.type})</p>
-                </div>
-            `).join("<br>")}
+            ${set.cards.join("<br>")}
         `;
         savedSetsDiv.appendChild(setElement);
     });
 }
+
+
+
 
