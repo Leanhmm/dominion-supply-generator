@@ -1,4 +1,3 @@
-
 const baseSetCards = [
  { name: "Artisan", cost: 6, type: "Action", image: "images/Artisan.jpg" },
     { name: "Bandit", cost: 5, type: "Attack, Action", image: "images/Bandit.jpg" },
@@ -138,62 +137,80 @@ function generateSupply() {
     // Sort the supply cards by cost (ascending)
     supply.sort((a, b) => a.cost - b.cost);
 
+    // Determine additional setup cards
+    const additionalCards = getAdditionalSetupCards(supply);
+
     // Call the display function
-    displaySupply(supply);
+    displaySupply(supply, additionalCards);
 }
 
-function displaySupply(supply) {
-    if (!supply || supply.length === 0) {
-        console.error("No cards to display!");
-        return;
-    }
+function getAdditionalSetupCards(supply) {
+    const additionalCardsMap = {
+        "Soothsayer": { name: "Curse", image: "images/Curse.jpg" },
+        "Witch": { name: "Curse", image: "images/Curse.jpg" },
+        "Young Witch": { name: "Curse", image: "images/Curse.jpg" },
+        "Jester": { name: "Curse", image: "images/Curse.jpg" },
+        "Baker": { name: "Coffers", image: "images/Coffers.jpg" },
+       "Butcher": { name: "Coffers", image: "images/Coffers.jpg" },
+       "Candlestick Maker": { name: "Coffers", image: "images/Coffers.jpg" },
+       "Plaza": { name: "Coffers", image: "images/Coffers.jpg" },
+       "Merchant Guild": { name: "Coffers", image: "images/Coffers.jpg" },
+       "Hermit": { name: "Madman", image: "images/Madman.jpg" },
+       "Urchin": { name: "Mercenary", image: "images/Mercenary.jpg" },
+       "Tournament": { name: "Prizes", image: "images/Prizes.jpg" },
+       "Cultist": { name: "Ruins", image: "images/Ruins.jpg" },
+        "Death Cart": { name: "Ruins", image: "images/Ruins.jpg" },
+        "Marauder": { name: "Ruins", image: "images/Ruins.jpg" },
+        "Marauder": { name: "Spoils", image: "images/Spoils.jpg" },
+            "Pillage": { name: "Spoils", image: "images/Spoils.jpg" },
+            "Bandit Camp": { name: "Spoils", image: "images/Spoils.jpg" },
 
-    const supplyList = document.getElementById("supply-list");
-    if (!supplyList) {
-        console.error("Supply list element not found!");
-        return;
-    }
+        // Add other special cards and their setup requirements here
+    };
 
-    supplyList.innerHTML = ""; // Clear previous supply
-
-    const rows = 2; // Number of rows
-    const cols = 5; // Number of columns
-    const totalCards = rows * cols; // Total number of cards to display (should be 10)
-
-    // Ensure there are exactly 10 cards to display
-    supply = supply.slice(0, totalCards);
-
-    // Create an array to hold the columns
-    let columns = Array(cols).fill().map(() => []);
-
-    // Distribute cards across columns
-    for (let i = 0; i < supply.length; i++) {
-        const colIndex = Math.floor(i / rows);  // Calculate column index (distribute by rows)
-        columns[colIndex].push(supply[i]); // Add card to the appropriate column
-    }
-
-    // Now, we need to display cards row by row
-    for (let row = 0; row < rows; row++) {
-        for (let col = 0; col < cols; col++) {
-            const card = columns[col][row];  // Get the card for the current row and column
-            if (card) {
-                const cardElement = document.createElement("div");
-                cardElement.className = "card";
-
-                const img = document.createElement("img");
-                img.src = card.image;
-                img.alt = card.name;
-                img.onerror = () => {
-                    img.src = "images/default.jpg"; // Fallback image if the original is missing
-                };
-
-            
-
-                cardElement.appendChild(img);
-             
-                supplyList.appendChild(cardElement);
+    const additionalCards = [];
+    supply.forEach(card => {
+        if (additionalCardsMap[card.name]) {
+            const extraCard = additionalCardsMap[card.name];
+            if (!additionalCards.find(ac => ac.name === extraCard.name)) {
+                additionalCards.push(extraCard);
             }
         }
+    });
+
+    return additionalCards;
+}
+
+function displaySupply(supply, additionalCards = []) {
+    const supplyList = document.getElementById("supply-list");
+    supplyList.innerHTML = ""; // Clear previous supply
+
+    // Display the 10 sorted cards
+    supply.forEach(card => {
+        const cardElement = document.createElement("div");
+        cardElement.classList.add("card");
+        cardElement.innerHTML = `
+            <img src="${card.image}" alt="${card.name}">
+            <p>${card.name} (${card.cost})</p>
+        `;
+        supplyList.appendChild(cardElement);
+    });
+
+    // Display additional setup cards
+    if (additionalCards.length > 0) {
+        const extraSetupHeader = document.createElement("h3");
+        extraSetupHeader.textContent = "Additional Setup Cards:";
+        supplyList.appendChild(extraSetupHeader);
+
+        additionalCards.forEach(extraCard => {
+            const extraCardElement = document.createElement("div");
+            extraCardElement.classList.add("card");
+            extraCardElement.innerHTML = `
+                <img src="${extraCard.image}" alt="${extraCard.name}">
+                <p>${extraCard.name}</p>
+            `;
+            supplyList.appendChild(extraCardElement);
+        });
     }
 }
 
