@@ -158,6 +158,7 @@ function getAdditionalSetupCards(supply) {
        "Hermit": { name: "Madman", image: "images/Madman.jpg" },
        "Urchin": { name: "Mercenary", image: "images/Mercenary.jpg" },
        "Tournament": { name: "Prizes", image: "images/Prizes.jpg" },
+     "Tournament": { name: "Curse", image: "images/Curse.jpg" },
        "Cultist": { name: "Ruins", image: "images/Ruins.jpg" },
         "Death Cart": { name: "Ruins", image: "images/Ruins.jpg" },
         "Marauder": { name: "Ruins", image: "images/Ruins.jpg" },
