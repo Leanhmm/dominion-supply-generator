@@ -36,6 +36,12 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add shadow */
         }
 
+        .card p {
+            text-align: center; /* Center align the text */
+            font-size: 14px; /* Smaller text size */
+            margin-top: 8px; /* Space between image and text */
+        }
+
         /* Style for the toggle switches (25% smaller) */
         .switch {
             position: relative;
@@ -162,43 +168,6 @@
         <div id="saved-sets"></div>
     </div>
 
-    <script>
-        function generateSupply() {
-            // Example for generating cards - adjust according to your card data
-            let cards = [
-                { imageUrl: "https://via.placeholder.com/150/0000FF/808080?Text=Card+1", cost: 5 },
-                { imageUrl: "https://via.placeholder.com/150/FF0000/FFFFFF?Text=Card+2", cost: 3 },
-                { imageUrl: "https://via.placeholder.com/150/FFFF00/000000?Text=Card+3", cost: 2 },
-                { imageUrl: "https://via.placeholder.com/150/00FF00/FFFFFF?Text=Card+4", cost: 4 },
-                { imageUrl: "https://via.placeholder.com/150/FF00FF/FFFFFF?Text=Card+5", cost: 6 }
-            ];
-
-            // Sort cards by cost
-            cards.sort((a, b) => a.cost - b.cost);
-
-            let supplyList = document.getElementById('supply-list');
-            supplyList.innerHTML = ''; // Clear any previous cards
-
-            cards.forEach(card => {
-                let cardElement = document.createElement('div');
-                cardElement.className = 'card';
-                cardElement.innerHTML = `
-                    <img src="${card.imageUrl}" alt="Card Image">
-                `;
-                supplyList.appendChild(cardElement);
-            });
-        }
-
-        function saveSet() {
-            // Example save functionality
-            let setName = document.getElementById('set-name').value;
-            if (setName) {
-                let savedSetsDiv = document.getElementById('saved-sets');
-                let newSet = document.createElement('div');
-                newSet.textContent = setName;
-                savedSetsDiv.appendChild(newSet);
-            }
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
