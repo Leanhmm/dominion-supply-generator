@@ -141,7 +141,7 @@ function generateSupply() {
     const additionalCards = getAdditionalSetupCards(supply);
 
     // Call the display function
-    displaySupply(supply, additionalCards);
+    displaySupply(supply);
 }
 
 function getAdditionalSetupCards(supply) {
@@ -183,18 +183,57 @@ function getAdditionalSetupCards(supply) {
 
 function displaySupply(supply, additionalCards = []) {
     const supplyList = document.getElementById("supply-list");
+
+function displaySupply(supply) {
+    if (!supply || supply.length === 0) {
+        console.error("No cards to display!");
+        return;
+    }
+
+    const supplyList = document.getElementById("supply-list");
+    if (!supplyList) {
+        console.error("Supply list element not found!");
+        return;
+    }
+
     supplyList.innerHTML = ""; // Clear previous supply
 
-    // Display the 10 sorted cards
-    supply.forEach(card => {
-        const cardElement = document.createElement("div");
-        cardElement.classList.add("card");
-        cardElement.innerHTML = `
-            <img src="${card.image}" alt="${card.name}">
-            <p>${card.name} (${card.cost})</p>
-        `;
-        supplyList.appendChild(cardElement);
-    });
+    const rows = 2; // Number of rows
+    const cols = 5; // Number of columns
+    const totalCards = rows * cols; // Total number of cards to display (should be 10)
+
+    // Ensure there are exactly 10 cards to display
+    supply = supply.slice(0, totalCards);
+
+    // Create an array to hold the columns
+    let columns = Array(cols).fill().map(() => []);
+
+    // Distribute cards across columns
+    for (let i = 0; i < supply.length; i++) {
+        const colIndex = Math.floor(i / rows);  // Calculate column index (distribute by rows)
+        columns[colIndex].push(supply[i]); // Add card to the appropriate column
+    }
+
+    // Now, we need to display cards row by row
+    for (let row = 0; row < rows; row++) {
+        for (let col = 0; col < cols; col++) {
+            const card = columns[col][row];  // Get the card for the current row and column
+            if (card) {
+                const cardElement = document.createElement("div");
+                cardElement.className = "card";
+
+                const img = document.createElement("img");
+                img.src = card.image;
+                img.alt = card.name;
+                img.onerror = () => {
+                    img.src = "images/default.jpg"; // Fallback image if the original is missing
+                };
+
+            
+
+                cardElement.appendChild(img);
+             
+                supplyList.appendChild(cardElement);
 
     // Display additional setup cards
     if (additionalCards.length > 0) {
@@ -211,6 +250,10 @@ function displaySupply(supply, additionalCards = []) {
             `;
             supplyList.appendChild(extraCardElement);
         });
+    }
+}
+            }
+        }
     }
 }
 
@@ -249,3 +292,5 @@ function displaySavedSets() {
         savedSetsDiv.appendChild(setElement);
     });
 }
+
+
