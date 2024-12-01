@@ -162,6 +162,43 @@
         <div id="saved-sets"></div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        function generateSupply() {
+            // Example for generating cards - adjust according to your card data
+            let cards = [
+                { name: "Card 1", imageUrl: "card1.jpg", cost: 5 },
+                { name: "Card 2", imageUrl: "card2.jpg", cost: 3 },
+                { name: "Card 3", imageUrl: "card3.jpg", cost: 2 },
+                { name: "Card 4", imageUrl: "card4.jpg", cost: 4 },
+                { name: "Card 5", imageUrl: "card5.jpg", cost: 6 }
+            ];
+
+            // Sort cards by cost
+            cards.sort((a, b) => a.cost - b.cost);
+
+            let supplyList = document.getElementById('supply-list');
+            supplyList.innerHTML = ''; // Clear any previous cards
+
+            cards.forEach(card => {
+                let cardElement = document.createElement('div');
+                cardElement.className = 'card';
+                cardElement.innerHTML = `
+                    <img src="${card.imageUrl}" alt="${card.name}">
+                `;
+                supplyList.appendChild(cardElement);
+            });
+        }
+
+        function saveSet() {
+            // Example save functionality
+            let setName = document.getElementById('set-name').value;
+            if (setName) {
+                let savedSetsDiv = document.getElementById('saved-sets');
+                let newSet = document.createElement('div');
+                newSet.textContent = setName;
+                savedSetsDiv.appendChild(newSet);
+            }
+        }
+    </script>
 </body>
 </html>
