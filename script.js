@@ -140,8 +140,11 @@ function displaySupply(supply) {
     supplyList.innerHTML = ""; // Clear previous supply
     supply.forEach(card => {
         const cardElement = document.createElement("div");
-        cardElement.textContent = `${card.name} (Cost: ${card.cost}, Type: ${card.type})`;
         cardElement.className = "card";
+        cardElement.innerHTML = `
+            <img src="${card.image}" alt="${card.name}" style="width: 100%; max-width: 200px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+            <p>${card.name} (Cost: ${card.cost}, Type: ${card.type})</p>
+        `;
         supplyList.appendChild(cardElement);
     });
 }
@@ -166,12 +169,3 @@ function displaySavedSets() {
     savedSetsDiv.innerHTML = ""; // Clear previous saved sets
 
     savedSets.forEach(set => {
-        const setElement = document.createElement("div");
-        setElement.className = "saved-set";
-        setElement.innerHTML = `
-            <strong>${set.name}</strong><br>
-            ${set.cards.join("<br>")}
-        `;
-        savedSetsDiv.appendChild(setElement);
-    });
-}
