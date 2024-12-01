@@ -137,11 +137,6 @@ function generateSupply() {
     // Sort the supply cards by cost (ascending)
     supply.sort((a, b) => a.cost - b.cost);
 
-   // Check for specific cards that trigger the Curse card
-    const curseTriggerCards = ["Soothsayer", "YoungWitch", "Jester", "Witch"];
-    const addCurse = supply.some(card => curseTriggerCards.includes(card.name));
-
- 
     // Call the display function
     displaySupply(supply);
 }
@@ -196,30 +191,10 @@ function displaySupply(supply) {
                 cardElement.appendChild(img);
              
                 supplyList.appendChild(cardElement);
-
-               // Add Curse card below the grid if applicable
-    const curseContainer = document.getElementById("curse-container") || document.createElement("div");
-    curseContainer.id = "curse-container";
-    curseContainer.innerHTML = ""; // Clear previous Curse card
-
-    if (addCurse) {
-        const curseCard = document.createElement("div");
-        curseCard.className = "card";
-        curseCard.innerHTML = `
-            <img src="images/Curse.jpg" alt="Curse">
-            <p>Curse</p>
-        `;
-        curseContainer.appendChild(curseCard);
-    }
-
-    // Append the Curse container to the body (or a specific section)
-    if (!document.getElementById("curse-container")) {
-        document.body.appendChild(curseContainer);
-    }
-}
             }
         }
     }
+}
 
 // Example usage (ensure this is connected to your button):
 document.getElementById("generate-supply").addEventListener("click", generateSupply);
