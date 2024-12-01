@@ -20,14 +20,13 @@
         }
 
         /* Style for the supply list grid */
-    #supply-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));  /* Dynamic column size */
-    gap: 16px;
-    max-width: 1000px;
-    margin: 0 auto;
-}
-
+        #supply-list {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr); /* 5 columns */
+            gap: 16px; /* Space between grid items */
+            max-width: 1000px; /* Optional: Set max width for the grid */
+            margin: 0 auto; /* Center the grid */
+        }
 
         /* Style for individual card elements */
         .card img {
@@ -172,3 +171,4 @@
     <script src="script.js"></script>
 </body>
 </html>
+
