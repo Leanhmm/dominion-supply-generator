@@ -103,18 +103,21 @@ function generateSupply() {
     const includeDarkAges = document.getElementById("include-dark-ages").checked;
     const includeGuildsCornucopia = document.getElementById("include-guilds-cornucopia").checked;
 
+    // Combine selected sets
     let filteredCards = [];
     if (includeBaseSet) filteredCards = filteredCards.concat(baseSetCards);
     if (includeDarkAges) filteredCards = filteredCards.concat(darkAgesCards);
     if (includeGuildsCornucopia) filteredCards = filteredCards.concat(guildsCornucopiaCards);
 
+    // Apply the "Include Attack" filter
     if (!includeAttack) {
         filteredCards = filteredCards.filter(card => !card.type.includes("Attack"));
     }
 
+    // Generate the supply
     let supply = [];
     if (balancedCost) {
-        const costs = [2, 3, 4, 5, 6];
+        const costs = [2, 3, 4, 5];
         costs.forEach(cost => {
             const costCards = filteredCards.filter(card => card.cost === cost);
             if (costCards.length > 0) {
@@ -123,6 +126,7 @@ function generateSupply() {
         });
     }
 
+    // Add random cards until we have 10
     while (supply.length < 10 && filteredCards.length > 0) {
         const randomCard = filteredCards[Math.floor(Math.random() * filteredCards.length)];
         if (!supply.includes(randomCard)) {
@@ -130,22 +134,71 @@ function generateSupply() {
         }
     }
 
+    // Sort the supply cards by cost (ascending)
+    supply.sort((a, b) => a.cost - b.cost);
+
+    // Call the display function
     displaySupply(supply);
 }
 
 function displaySupply(supply) {
+    if (!supply || supply.length === 0) {
+        console.error("No cards to display!");
+        return;
+    }
+
     const supplyList = document.getElementById("supply-list");
+    if (!supplyList) {
+        console.error("Supply list element not found!");
+        return;
+    }
+
     supplyList.innerHTML = ""; // Clear previous supply
-    supply.forEach(card => {
-        const cardElement = document.createElement("div");
-        cardElement.className = "card";
-        cardElement.innerHTML = `
-            <img src="${card.image}" alt="${card.name}" style="width: 100%; max-width: 200px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-            <p>${card.name} (Cost: ${card.cost}, Type: ${card.type})</p>
-        `;
-        supplyList.appendChild(cardElement);
-    });
+
+    // Sort the cards by cost
+    supply.sort((a, b) => a.cost - b.cost);
+
+    // Now, distribute the cards into columns (2 rows, 5 columns)
+    const rows = 2; // Number of rows
+    const cols = 5; // Number of columns
+    let columns = Array(cols).fill([]); // Create an array to hold columns
+
+    // Distribute the sorted cards by columns
+    for (let i = 0; i < supply.length; i++) {
+        const colIndex = i % cols;
+        columns[colIndex] = [...columns[colIndex], supply[i]]; // Add card to column
+    }
+
+    // Now, display the cards column-wise
+    for (let col = 0; col < cols; col++) {
+        for (let row = 0; row < rows; row++) {
+            const card = columns[col][row];
+            if (card) {
+                const cardElement = document.createElement("div");
+                cardElement.className = "card";
+
+                const img = document.createElement("img");
+                img.src = card.image;
+                img.alt = card.name;
+                img.onerror = () => {
+                    img.src = "images/default.jpg"; // Fallback image if the original is missing
+                };
+
+                const details = document.createElement("p");
+                details.textContent = `${card.name} (Cost: ${card.cost}, Type: ${card.type})`;
+
+                cardElement.appendChild(img);
+                cardElement.appendChild(details);
+
+                supplyList.appendChild(cardElement);
+            }
+        }
+    }
 }
+
+// Example usage (ensure this is connected to your button):
+document.getElementById("generate-supply").addEventListener("click", generateSupply);
+
 
 function saveSet() {
     const setName = document.getElementById("set-name").value.trim();
