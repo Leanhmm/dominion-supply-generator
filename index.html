@@ -4,135 +4,159 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dominion Supply Generator</title>
-  <style>
-    /* General body styling */
-    body {
-        font-family: Arial, sans-serif;
-        text-align: center;
-        margin: 20px;
-        background: url('https://cdna.artstation.com/p/assets/images/images/009/330/096/large/tomasz-jedruszek-asdominion-2nd.jpg?1518377966') no-repeat center center fixed; /* Background image */
-        background-size: cover; /* Ensure the image covers the entire screen */
-        color: white; /* White text color for better readability */
-        height: 100vh; /* Ensure the body takes full viewport height */
-        display: flex;
-        justify-content: center; /* Horizontally center the content */
-        align-items: center; /* Vertically center the content */
-        flex-direction: column; /* Stack elements vertically */
-    }
+    <style>
+        /* General body styling */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+            background: url('https://cdna.artstation.com/p/assets/images/images/009/330/096/large/tomasz-jedruszek-asdominion-2nd.jpg?1518377966') no-repeat center center fixed; /* Background image */
+            background-size: cover; /* Ensure the image covers the entire screen */
+            color: white; /* White text color for better readability */
+            height: 100vh; /* Ensure the body takes full viewport height */
+            display: flex;
+            justify-content: center; /* Horizontally center the content */
+            align-items: center; /* Vertically center the content */
+            flex-direction: column; /* Stack elements vertically */
+        }
 
-    /* Style for the supply list grid */
-    #supply-list {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr); /* 5 columns */
-        gap: 16px; /* Space between grid items */
-        max-width: 1000px; /* Optional: Set max width for the grid */
-        margin: 0 auto; /* Center the grid */
-    }
+        /* Style for the supply list grid */
+        #supply-list {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr); /* 5 columns */
+            gap: 16px; /* Space between grid items */
+            max-width: 1000px; /* Optional: Set max width for the grid */
+            margin: 0 auto; /* Center the grid */
+        }
 
-    /* Style for individual card elements */
-    .card img {
-        width: 100%; /* Images take full width of the grid cell */
-        height: auto; /* Maintain aspect ratio */
-        border-radius: 8px; /* Rounded corners */
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add shadow */
-    }
+        /* Style for individual card elements */
+        .card img {
+            width: 100%; /* Images take full width of the grid cell */
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add shadow */
+        }
 
-    .card p {
-        text-align: center; /* Center align the text */
-        font-size: 14px; /* Smaller text size */
-        margin-top: 8px; /* Space between image and text */
-    }
+        .card p {
+            text-align: center; /* Center align the text */
+            font-size: 14px; /* Smaller text size */
+            margin-top: 8px; /* Space between image and text */
+        }
 
-    /* Style for the toggle switches */
-    .switch {
-        position: relative;
-        display: inline-block;
-        width: 60px;
-        height: 34px;
-        margin: 10px; /* Space between switches */
-    }
+        /* Style for the toggle switches */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+            margin: 10px; /* Space between switches */
+            vertical-align: middle;
+        }
 
-    .switch input {
-        opacity: 0;
-        width: 0;
-        height: 0;
-    }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
 
-    .slider {
-        position: absolute;
-        cursor: pointer;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: #ccc;
-        transition: 0.4s;
-        border-radius: 34px;
-    }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.4s;
+            border-radius: 34px;
+        }
 
-    .slider:before {
-        position: absolute;
-        content: "";
-        height: 26px;
-        width: 26px;
-        border-radius: 50%;
-        left: 4px;
-        bottom: 4px;
-        background-color: white;
-        transition: 0.4s;
-    }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            border-radius: 50%;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: 0.4s;
+        }
 
-    input:checked + .slider {
-        background-color: #9B30FF; /* Purple when on */
-    }
+        input:checked + .slider {
+            background-color: #9B30FF; /* Purple when on */
+        }
 
-    input:checked + .slider:before {
-        transform: translateX(26px);
-    }
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
 
-    /* Style for the settings container */
-    .settings {
-        display: flex;
-        flex-direction: column; /* Stack switches vertically */
-        align-items: center; /* Center switches horizontally */
-        margin: 10px;
-    }
-</style>
+        /* Style for the settings container */
+        .settings {
+            display: flex;
+            flex-direction: column; /* Stack switches vertically */
+            align-items: center; /* Center switches horizontally */
+            margin: 10px;
+        }
 
+        /* Align switch label and text side by side */
+        .switch-container {
+            display: flex;
+            align-items: center; /* Align items vertically */
+            justify-content: center;
+            margin: 10px 0; /* Space between items */
+        }
+
+        .switch-container label {
+            margin-left: 10px; /* Add space between switch and label */
+            font-size: 1.2em;
+        }
+    </style>
 </head>
 <body>
     <h1>Dominion Supply Generator</h1>
     <div class="settings">
-        <label class="switch">
-            <input type="checkbox" id="include-attack" checked>
-            <span class="slider"></span>
-        </label>
-        Include Attack Cards<br>
+        <div class="switch-container">
+            <label class="switch">
+                <input type="checkbox" id="include-attack" checked>
+                <span class="slider"></span>
+            </label>
+            <label for="include-attack">Include Attack Cards</label>
+        </div>
         
-        <label class="switch">
-            <input type="checkbox" id="balanced-cost" checked>
-            <span class="slider"></span>
-        </label>
-        Ensure Balanced Costs<br>
+        <div class="switch-container">
+            <label class="switch">
+                <input type="checkbox" id="balanced-cost" checked>
+                <span class="slider"></span>
+            </label>
+            <label for="balanced-cost">Ensure Balanced Costs</label>
+        </div>
         
         <h3>Select Card Sets:</h3>
-        <label class="switch">
-            <input type="checkbox" id="include-base-set" checked>
-            <span class="slider"></span>
-        </label>
-        Base Set<br>
         
-        <label class="switch">
-            <input type="checkbox" id="include-dark-ages" checked>
-            <span class="slider"></span>
-        </label>
-        Dark Ages<br>
-        
-        <label class="switch">
-            <input type="checkbox" id="include-guilds-cornucopia" checked>
-            <span class="slider"></span>
-        </label>
-        Guilds & Cornucopia
+        <div class="switch-container">
+            <label class="switch">
+                <input type="checkbox" id="include-base-set" checked>
+                <span class="slider"></span>
+            </label>
+            <label for="include-base-set">Base Set</label>
+        </div>
+
+        <div class="switch-container">
+            <label class="switch">
+                <input type="checkbox" id="include-dark-ages" checked>
+                <span class="slider"></span>
+            </label>
+            <label for="include-dark-ages">Dark Ages</label>
+        </div>
+
+        <div class="switch-container">
+            <label class="switch">
+                <input type="checkbox" id="include-guilds-cornucopia" checked>
+                <span class="slider"></span>
+            </label>
+            <label for="include-guilds-cornucopia">Guilds & Cornucopia</label>
+        </div>
     </div>
 
     <button onclick="generateSupply()">Generate Supply</button>
