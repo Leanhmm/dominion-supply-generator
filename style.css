@@ -1,0 +1,71 @@
+/* General body styling for background */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    padding: 20px;
+}
+
+/* Style for the toggle switch container */
+.toggle-switch {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Hide the default checkbox appearance */
+.toggle-input {
+    display: none;
+}
+
+/* The custom toggle slider */
+.toggle-label {
+    width: 50px;
+    height: 25px;
+    background-color: #ccc;
+    border-radius: 25px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* The circle inside the toggle */
+.toggle-label:before {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: white;
+    top: 2px;
+    left: 2px;
+    transition: transform 0.3s;
+}
+
+/* Style when the toggle is checked (on state) */
+.toggle-input:checked + .toggle-label {
+    background-color: #4CAF50; /* Green when on */
+}
+
+/* Move the circle to the right when checked */
+.toggle-input:checked + .toggle-label:before {
+    transform: translateX(25px);
+}
+
+/* Text next to the switch */
+.toggle-switch span {
+    margin-left: 10px;
+    font-size: 14px;
+}
+
+/* Additional styling for the toggle switches */
+.toggle-switch {
+    margin: 10px 0;
+}
+
+/* Customize the font of the labels */
+.toggle-switch span {
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+}
+
