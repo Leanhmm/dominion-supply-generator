@@ -84,33 +84,47 @@
         input:checked + .slider:before {
             transform: translateX(26px);
         }
+
+        .settings {
+            margin: 10px;
+        }
     </style>
 </head>
 <body>
     <h1>Dominion Supply Generator</h1>
     <div class="settings">
-        <label>
+        <label class="switch">
             <input type="checkbox" id="include-attack" checked>
-            Include Attack Cards
-        </label><br>
-        <label>
-            <input type="checkbox" id="balanced-cost" checked>
-            Ensure Balanced Costs
-        </label><br>
-        <h3>Select Card Sets:</h3>
-        <label>
-            <input type="checkbox" id="include-base-set" checked>
-            Base Set
-        </label><br>
-        <label>
-            <input type="checkbox" id="include-dark-ages" checked>
-            Dark Ages
-        </label><br>
-        <label>
-            <input type="checkbox" id="include-guilds-cornucopia" checked>
-            Guilds & Cornucopia
+            <span class="slider"></span>
         </label>
+        Include Attack Cards<br>
+        
+        <label class="switch">
+            <input type="checkbox" id="balanced-cost" checked>
+            <span class="slider"></span>
+        </label>
+        Ensure Balanced Costs<br>
+        
+        <h3>Select Card Sets:</h3>
+        <label class="switch">
+            <input type="checkbox" id="include-base-set" checked>
+            <span class="slider"></span>
+        </label>
+        Base Set<br>
+        
+        <label class="switch">
+            <input type="checkbox" id="include-dark-ages" checked>
+            <span class="slider"></span>
+        </label>
+        Dark Ages<br>
+        
+        <label class="switch">
+            <input type="checkbox" id="include-guilds-cornucopia" checked>
+            <span class="slider"></span>
+        </label>
+        Guilds & Cornucopia
     </div>
+
     <button onclick="generateSupply()">Generate Supply</button>
     <div id="supply-list"></div>
     <div>
