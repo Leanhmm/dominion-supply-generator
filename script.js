@@ -136,41 +136,14 @@ function generateSupply() {
 }
 
 function displaySupply(supply) {
-    // Sort the supply cards by cost
-    supply.sort((a, b) => a.cost - b.cost);
-
     const supplyList = document.getElementById("supply-list");
     supplyList.innerHTML = ""; // Clear previous supply
-
-    // Display cards in a 2x5 grid, column-wise
-    const rows = 2; // Number of rows
-    const cols = 5; // Number of columns
-    for (let col = 0; col < cols; col++) {
-        for (let row = 0; row < rows; row++) {
-            const index = col + row * cols; // Calculate index for column-wise sorting
-            if (index < supply.length) {
-                const card = supply[index];
-
-                const cardElement = document.createElement("div");
-                cardElement.className = "card";
-
-                const img = document.createElement("img");
-                img.src = card.image;
-                img.alt = card.name;
-                img.onerror = () => {
-                    img.src = "images/default.jpg"; // Fallback image if the original is missing
-                };
-
-                const details = document.createElement("p");
-                details.textContent = `${card.name} (Cost: ${card.cost}, Type: ${card.type})`;
-
-                cardElement.appendChild(img);
-                cardElement.appendChild(details);
-
-                supplyList.appendChild(cardElement);
-            }
-        }
-    }
+    supply.forEach(card => {
+        const cardElement = document.createElement("div");
+        cardElement.textContent = `${card.name} (Cost: ${card.cost}, Type: ${card.type})`;
+        cardElement.className = "card";
+        supplyList.appendChild(cardElement);
+    });
 }
 
 function saveSet() {
