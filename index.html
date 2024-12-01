@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dominion Supply Generator</title>
+       <link rel="stylesheet" href="styles.css">
     <style>
         body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
         .card { margin: 5px; font-size: 1.2em; }
@@ -38,30 +39,44 @@
     
 </head>
 <body>
+   
     <h1>Dominion Supply Generator</h1>
-    <div class="settings">
-        <label>
-            <input type="checkbox" id="include-attack" checked>
-            Include Attack Cards
-        </label><br>
-        <label>
-            <input type="checkbox" id="balanced-cost" checked>
-            Ensure Balanced Costs
-        </label><br>
-        <h3>Select Card Sets:</h3>
-        <label>
-            <input type="checkbox" id="include-base-set" checked>
-            Base Set
-        </label><br>
-        <label>
-            <input type="checkbox" id="include-dark-ages" checked>
-            Dark Ages
-        </label><br>
-        <label>
-            <input type="checkbox" id="include-guilds-cornucopia" checked>
-            Guilds & Cornucopia
-        </label>
-    </div>
+
+    <div>
+        <!-- Checkbox for Attack Cards -->
+        <div class="toggle-switch">
+            <input type="checkbox" id="include-attack" class="toggle-input">
+            <label for="include-attack" class="toggle-label"></label>
+            <span>Include Attack Cards</span>
+        </div>
+
+        <!-- Checkbox for Balanced Cost -->
+        <div class="toggle-switch">
+            <input type="checkbox" id="balanced-cost" class="toggle-input">
+            <label for="balanced-cost" class="toggle-label"></label>
+            <span>Balanced Cost</span>
+        </div>
+
+        <!-- Checkbox for Including Base Set -->
+        <div class="toggle-switch">
+            <input type="checkbox" id="include-base-set" class="toggle-input">
+            <label for="include-base-set" class="toggle-label"></label>
+            <span>Include Base Set</span>
+        </div>
+
+        <!-- Checkbox for Including Dark Ages -->
+        <div class="toggle-switch">
+            <input type="checkbox" id="include-dark-ages" class="toggle-input">
+            <label for="include-dark-ages" class="toggle-label"></label>
+            <span>Include Dark Ages</span>
+        </div>
+
+        <!-- Checkbox for Including Guilds and Cornucopia -->
+        <div class="toggle-switch">
+            <input type="checkbox" id="include-guilds-cornucopia" class="toggle-input">
+            <label for="include-guilds-cornucopia" class="toggle-label"></label>
+            <span>Include Guilds & Cornucopia</span>
+        </div>
     <button onclick="generateSupply()">Generate Supply</button>
     <div id="supply-list"></div>
     <div>
