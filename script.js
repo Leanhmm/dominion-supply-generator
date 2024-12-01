@@ -1,3 +1,4 @@
+
 const baseSetCards = [
  { name: "Artisan", cost: 6, type: "Action", image: "images/Artisan.jpg" },
     { name: "Bandit", cost: 5, type: "Attack, Action", image: "images/Bandit.jpg" },
@@ -135,53 +136,10 @@ function generateSupply() {
     }
 
     // Sort the supply cards by cost (ascending)
-   supply.sort((a, b) => a.cost - b.cost);
-
-    // Determine additional setup cards
-    const additionalCards = getAdditionalSetupCards(supply);
+    supply.sort((a, b) => a.cost - b.cost);
 
     // Call the display function
-    displaySupply(supply, additionalCards);
-}
-
-function getAdditionalSetupCards(supply) {
-    const additionalCardsMap = {
-        "Soothsayer": { name: "Curse", image: "images/Curse.jpg" },
-        "Witch": { name: "Curse", image: "images/Curse.jpg" },
-        "Young Witch": { name: "Curse", image: "images/Curse.jpg" },
-        "Jester": { name: "Curse", image: "images/Curse.jpg" },
-        "Baker": { name: "Coffers", image: "images/Coffers.jpg" },
-       "Butcher": { name: "Coffers", image: "images/Coffers.jpg" },
-       "Candlestick Maker": { name: "Coffers", image: "images/Coffers.jpg" },
-       "Plaza": { name: "Coffers", image: "images/Coffers.jpg" },
-       "Merchant Guild": { name: "Coffers", image: "images/Coffers.jpg" },
-       "Hermit": { name: "Madman", image: "images/Madman.jpg" },
-       "Urchin": { name: "Mercenary", image: "images/Mercenary.jpg" },
-       "Tournament": { name: "Prizes", image: "images/Prizes.jpg" },
-       "Cultist": { name: "Ruins", image: "images/Ruins.jpg" },
-        "Death Cart": { name: "Ruins", image: "images/Ruins.jpg" },
-        "Marauder": { name: "Ruins", image: "images/Ruins.jpg" },
-        "Marauder": { name: "Spoils", image: "images/Spoils.jpg" },
-            "Pillage": { name: "Spoils", image: "images/Spoils.jpg" },
-            "Bandit Camp": { name: "Spoils", image: "images/Spoils.jpg" },
-
-        // Add other special cards and their setup requirements here
-    };
-
-    const additionalCards = [];
-    supply.forEach(card => {
-        if (additionalCardsMap[card.name]) {
-            const extraCard = additionalCardsMap[card.name];
-            if (!additionalCards.find(ac => ac.name === extraCard.name)) {
-                additionalCards.push(extraCard);
-            }
-        }
-    });
-
-    return additionalCards;
-}
-
-  displaySupply(supply);
+    displaySupply(supply);
 }
 
 function displaySupply(supply) {
@@ -236,24 +194,6 @@ function displaySupply(supply) {
                 supplyList.appendChild(cardElement);
             }
         }
-    }
-}
-
-    // Display additional setup cards
-    if (additionalCards.length > 0) {
-        const extraSetupHeader = document.createElement("h3");
-        extraSetupHeader.textContent = "Additional Setup Cards:";
-        supplyList.appendChild(extraSetupHeader);
-
-        additionalCards.forEach(extraCard => {
-            const extraCardElement = document.createElement("div");
-            extraCardElement.classList.add("card");
-            extraCardElement.innerHTML = `
-                <img src="${extraCard.image}" alt="${extraCard.name}">
-                <p>${extraCard.name}</p>
-            `;
-            supplyList.appendChild(extraCardElement);
-        });
     }
 }
 
