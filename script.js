@@ -220,7 +220,6 @@ function displaySupply(supply) {
             }
         }
     }
-}
 
 // Example usage (ensure this is connected to your button):
 document.getElementById("generate-supply").addEventListener("click", generateSupply);
