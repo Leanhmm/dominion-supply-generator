@@ -166,11 +166,11 @@
         function generateSupply() {
             // Example for generating cards - adjust according to your card data
             let cards = [
-                { name: "Card 1", imageUrl: "card1.jpg", cost: 5 },
-                { name: "Card 2", imageUrl: "card2.jpg", cost: 3 },
-                { name: "Card 3", imageUrl: "card3.jpg", cost: 2 },
-                { name: "Card 4", imageUrl: "card4.jpg", cost: 4 },
-                { name: "Card 5", imageUrl: "card5.jpg", cost: 6 }
+                { imageUrl: "https://via.placeholder.com/150/0000FF/808080?Text=Card+1", cost: 5 },
+                { imageUrl: "https://via.placeholder.com/150/FF0000/FFFFFF?Text=Card+2", cost: 3 },
+                { imageUrl: "https://via.placeholder.com/150/FFFF00/000000?Text=Card+3", cost: 2 },
+                { imageUrl: "https://via.placeholder.com/150/00FF00/FFFFFF?Text=Card+4", cost: 4 },
+                { imageUrl: "https://via.placeholder.com/150/FF00FF/FFFFFF?Text=Card+5", cost: 6 }
             ];
 
             // Sort cards by cost
@@ -183,7 +183,7 @@
                 let cardElement = document.createElement('div');
                 cardElement.className = 'card';
                 cardElement.innerHTML = `
-                    <img src="${card.imageUrl}" alt="${card.name}">
+                    <img src="${card.imageUrl}" alt="Card Image">
                 `;
                 supplyList.appendChild(cardElement);
             });
