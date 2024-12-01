@@ -94,6 +94,8 @@ const guildsCornucopiaCards = [
     { name: "Taxman", cost: 4, type: "Attack, Action", image: "images/Taxman.jpg" }
 ];
 
+let savedSets = [];
+
 function generateSupply() {
     const includeAttack = document.getElementById("include-attack").checked;
     const balancedCost = document.getElementById("balanced-cost").checked;
