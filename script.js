@@ -181,20 +181,34 @@ function getAdditionalSetupCards(supply) {
     return additionalCards;
 }
 
-function displaySupply(supply, additionalCards = []) {
+function displaySupplyByColumns(supply, columns = 2) {
     const supplyList = document.getElementById("supply-list");
     supplyList.innerHTML = ""; // Clear previous supply
 
-    // Display the 10 sorted cards
-    supply.forEach(card => {
-        const cardElement = document.createElement("div");
-        cardElement.classList.add("card");
-        cardElement.innerHTML = `
-            <img src="${card.image}" alt="${card.name}">
-            <p>${card.name} (${card.cost})</p>
-        `;
-        supplyList.appendChild(cardElement);
+    // Determine the number of rows based on the number of columns
+    const rows = Math.ceil(supply.length / columns);
+
+    // Create a 2D array to organize cards into columns
+    const columnsArray = Array.from({ length: columns }, (_, colIndex) => {
+        return supply.slice(colIndex * rows, (colIndex + 1) * rows);
     });
+
+    // Reorganize cards to display by columns
+    for (let row = 0; row < rows; row++) {
+        for (let col = 0; col < columns; col++) {
+            const card = columnsArray[col][row];
+            if (card) {
+                const cardElement = document.createElement("div");
+                cardElement.classList.add("card");
+                cardElement.innerHTML = `
+                    <img src="${card.image}" alt="${card.name}">
+                    <p>${card.name} (${card.cost})</p>
+                `;
+                supplyList.appendChild(cardElement);
+            }
+        }
+    }
+}
 
     // Display additional setup cards
     if (additionalCards.length > 0) {
