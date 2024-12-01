@@ -94,8 +94,6 @@ const guildsCornucopiaCards = [
     { name: "Taxman", cost: 4, type: "Attack, Action", image: "images/Taxman.jpg" }
 ];
 
-let savedSets = []; // To store saved sets
-
 function generateSupply() {
     const includeAttack = document.getElementById("include-attack").checked;
     const balancedCost = document.getElementById("balanced-cost").checked;
@@ -171,66 +169,8 @@ function displaySupply(supply) {
         columns[colIndex].push(supply[i]); // Add card to the appropriate column
     }
 
-    // Now, we need to display cards row by row
-    for (let row = 0; row < rows; row++) {
-        for (let col = 0; col < cols; col++) {
-            const card = columns[col][row];  // Get the card for the current row and column
-            if (card) {
-                const cardElement = document.createElement("div");
-                cardElement.className = "card";
+    //
 
-                const img = document.createElement("img");
-                img.src = card.image;
-                img.alt = card.name;
-                img.onerror = () => {
-                    img.src = "images/default.jpg"; // Fallback image if the original is missing
-                };
-
-            
-
-                cardElement.appendChild(img);
-             
-                supplyList.appendChild(cardElement);
-            }
-        }
-    }
-}
-
-// Example usage (ensure this is connected to your button):
-document.getElementById("generate-supply").addEventListener("click", generateSupply);
-
-
-
-
-function saveSet() {
-    const setName = document.getElementById("set-name").value.trim();
-    const supplyList = Array.from(document.getElementById("supply-list").children);
-
-    if (!setName || supplyList.length === 0) {
-        alert("Enter a set name and generate a supply first!");
-        return;
-    }
-
-    const setCards = supplyList.map(el => el.textContent);
-    savedSets.push({ name: setName, cards: setCards });
-
-    displaySavedSets();
-}
-
-function displaySavedSets() {
-    const savedSetsDiv = document.getElementById("saved-sets");
-    savedSetsDiv.innerHTML = ""; // Clear previous saved sets
-
-    savedSets.forEach(set => {
-        const setElement = document.createElement("div");
-        setElement.className = "saved-set";
-        setElement.innerHTML = `
-            <strong>${set.name}</strong><br>
-            ${set.cards.join("<br>")}
-        `;
-        savedSetsDiv.appendChild(setElement);
-    });
-}
 
 
 
