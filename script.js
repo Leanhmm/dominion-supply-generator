@@ -94,7 +94,7 @@ const guildsCornucopiaCards = [
     { name: "Taxman", cost: 4, type: "Attack, Action", image: "images/Taxman.jpg" }
 ];
 
-let savedSets = []; // To store saved sets
+// var savedSets = []; // To store saved sets
 
 function generateSupply() {
     const includeAttack = document.getElementById("include-attack").checked;
@@ -104,7 +104,7 @@ function generateSupply() {
     const includeGuildsCornucopia = document.getElementById("include-guilds-cornucopia").checked;
 
     // Combine selected sets
-    let filteredCards = [];
+    var filteredCards = [];
     if (includeBaseSet) filteredCards = filteredCards.concat(baseSetCards);
     if (includeDarkAges) filteredCards = filteredCards.concat(darkAgesCards);
     if (includeGuildsCornucopia) filteredCards = filteredCards.concat(guildsCornucopiaCards);
@@ -115,7 +115,7 @@ function generateSupply() {
     }
 
     // Generate the supply
-    let supply = [];
+    var supply = [];
     if (balancedCost) {
         const costs = [2, 3, 4, 5];
         costs.forEach(cost => {
