@@ -167,7 +167,7 @@ function getAdditionalSetupCards(supply) {
      "Tournament": { name: "Curse", image: "images/Curse.jpg" },
        "Cultist": { name: "Ruins", image: "images/Ruins.jpg" },
         "Death Cart": { name: "Ruins", image: "images/Ruins.jpg" },
-        "Marauder": { name: "Ruins", image: "images/Ruins.jpg" }, { name: "Spoils", image: "images/Spoils.jpg" }
+        "Marauder": { name: "Ruins", image: "images/Ruins.jpg" },
         "Marauder": { name: "Spoils", image: "images/Spoils.jpg" },
             "Pillage": { name: "Spoils", image: "images/Spoils.jpg" },
             "Bandit Camp": { name: "Spoils", image: "images/Spoils.jpg" },
