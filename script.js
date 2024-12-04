@@ -1,3 +1,4 @@
+//defining base card names,cost,type,image
 const baseSetCards = [
  { name: "Artisan", cost: 6, type: "Action", image: "images/Artisan.jpg" },
     { name: "Bandit", cost: 5, type: "Attack, Action", image: "images/Bandit.jpg" },
@@ -27,6 +28,7 @@ const baseSetCards = [
     { name: "Gardens", cost: 4, type: "Victory", image: "images/Gardens.jpg" },
 ];
 
+//defining dark ages card names,cost,type,image
 const darkAgesCards = [
       { name: "Altar", cost: 6, type: "Action", image: "images/Altar.jpg" },
     { name: "Ironmonger", cost: 4, type: "Action", image: "images/Ironmonger.jpg" },
@@ -65,6 +67,7 @@ const darkAgesCards = [
     { name: "Beggar", cost: 2, type: "Reaction, Action", image: "images/Beggar.jpg" },
 ];
 
+//defining guilds cornucopia card names,cost,type,image
 const guildsCornucopiaCards = [
     { name: "Farming Village", cost: 4, type: "Action", image: "images/FarmingVillage.jpg" },
     { name: "Fortune Teller", cost: 3, type: "Attack, Action", image: "images/FortuneTeller.jpg" },
@@ -96,6 +99,7 @@ const guildsCornucopiaCards = [
 
 // var savedSets = []; // To store saved sets
 
+//main function, generates set of cards
 function generateSupply() {
     const includeAttack = document.getElementById("include-attack").checked;
     const balancedCost = document.getElementById("balanced-cost").checked;
@@ -122,6 +126,7 @@ function generateSupply() {
             const costCards = filteredCards.filter(card => card.cost === cost);
             if (costCards.length > 0) {
                 supply.push(costCards[Math.floor(Math.random() * costCards.length)]);
+             //supply.push(costCards[Math.floor(Math.random() * costCards.length + 1)]);
             }
         });
     }
@@ -129,6 +134,7 @@ function generateSupply() {
     // Add random cards until we have 10
     while (supply.length < 10 && filteredCards.length > 0) {
         const randomCard = filteredCards[Math.floor(Math.random() * filteredCards.length)];
+     //const randomCard = filteredCards[Math.floor(Math.random() * filteredCards.length + 1)];
         if (!supply.includes(randomCard)) {
             supply.push(randomCard);
         }
@@ -162,7 +168,7 @@ function getAdditionalSetupCards(supply) {
        "Cultist": { name: "Ruins", image: "images/Ruins.jpg" },
         "Death Cart": { name: "Ruins", image: "images/Ruins.jpg" },
         "Marauder": { name: "Ruins", image: "images/Ruins.jpg" },
-        "Marauder": { name: "Spoils", image: "images/Spoils.jpg" },
+        "Marauder": { name: "Spoils", image: "images/Spoils.jpg", name:"Ruins", image: "images/Ruins.jpg" },
             "Pillage": { name: "Spoils", image: "images/Spoils.jpg" },
             "Bandit Camp": { name: "Spoils", image: "images/Spoils.jpg" },
 
