@@ -157,7 +157,7 @@ function generateSupply() {
     displaySupply(supply, additionalCards);
 }
 
-function getAdditionalSetupCards(supply) {
+function getAdditionalSetupCards(supply, filteredCards) {
     const additionalCardsMap = {
         "Soothsayer": [{ name: "Curse", image: "images/Curse.jpg" }],
         "Witch": [{ name: "Curse", image: "images/Curse.jpg" }],
@@ -185,6 +185,7 @@ function getAdditionalSetupCards(supply) {
     };
 
     const additionalCards = [];
+
     supply.forEach(card => {
         if (!card) {
             console.error("Skipping undefined or invalid card:", card);
@@ -197,6 +198,21 @@ function getAdditionalSetupCards(supply) {
                     additionalCards.push(extraCard);
                 }
             });
+        }
+
+        // Special case for Young Witch: Add a random card costing 2-3 as an additional card
+        if (card.name === "Young Witch") {
+            const possibleBaneCards = filteredCards.filter(
+                c => c.cost >= 2 && c.cost <= 3 && c.name !== "Young Witch"
+            );
+
+            if (possibleBaneCards.length > 0) {
+                const baneCard = possibleBaneCards[Math.floor(Math.random() * possibleBaneCards.length)];
+                additionalCards.push({
+                    name: baneCard.name,
+                    image: baneCard.image
+                });
+            }
         }
     });
 
