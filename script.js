@@ -187,12 +187,8 @@ function getAdditionalSetupCards(supply, filteredCards) {
 
     const additionalCards = [];
 
-    supply.forEach(card => {
-        if (!card) {
-            console.error("Skipping undefined or invalid card:", card);
-            return; // Skip invalid entries
-        }
-
+    const addCardAndDependencies = card => {
+        // Add the card's dependencies from the map
         if (additionalCardsMap[card.name]) {
             additionalCardsMap[card.name].forEach(extraCard => {
                 if (!additionalCards.find(ac => ac.name === extraCard.name)) {
@@ -200,6 +196,16 @@ function getAdditionalSetupCards(supply, filteredCards) {
                 }
             });
         }
+    };
+
+    supply.forEach(card => {
+        if (!card) {
+            console.error("Skipping undefined or invalid card:", card);
+            return; // Skip invalid entries
+        }
+
+        // Add dependencies for cards in the supply
+        addCardAndDependencies(card);
 
         // Special case for Young Witch: Add a random card costing 2-3 as an additional card
         if (card.name === "Young Witch") {
@@ -209,10 +215,15 @@ function getAdditionalSetupCards(supply, filteredCards) {
 
             if (possibleBaneCards.length > 0) {
                 const baneCard = possibleBaneCards[Math.floor(Math.random() * possibleBaneCards.length)];
-                additionalCards.push({
-                    name: baneCard.name,
-                    image: baneCard.image
-                });
+                if (!additionalCards.find(ac => ac.name === baneCard.name)) {
+                    additionalCards.push({
+                        name: baneCard.name,
+                        image: baneCard.image
+                    });
+                }
+
+                // Add dependencies for the Bane card
+                addCardAndDependencies(baneCard);
             }
         }
     });
