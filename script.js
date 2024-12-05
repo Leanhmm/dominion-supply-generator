@@ -147,6 +147,7 @@ function generateSupply() {
         usedCards.add(randomCard.name);
     }
 
+
 // Sort the supply cards by cost (ascending)
 supply.sort((a, b) => a.cost - b.cost);
 
