@@ -20,10 +20,10 @@
     }
 
  /* Style for the supply list grid */
-    #supply-list {
+   #supply-list {
         display: grid;
-        grid-template-columns: repeat(5, 1fr); /* 5 columns */
-        grid-template-rows: repeat(2, auto); /* 2 rows, auto height for each row */
+        grid-template-columns: repeat(5, 1fr); /* 5 equal columns */
+        grid-template-rows: repeat(2, 1fr); /* 2 rows, equal height */
         gap: 16px; /* Space between grid items */
         max-width: 1000px; /* Optional: Set max width for the grid */
         margin: 0 auto; /* Center the grid */
@@ -42,7 +42,6 @@
         border-radius: 8px; /* Rounded corners */
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add shadow */
     }
-
     /* Style for individual card elements */
     .card img {
         width: 100%; /* Images take full width of the grid cell */
