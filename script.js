@@ -225,32 +225,3 @@ document.getElementById("generate-supply").addEventListener("click", generateSup
 
 
 
-function saveSet() {
-    const setName = document.getElementById("set-name").value.trim();
-    const supplyList = Array.from(document.getElementById("supply-list").children);
-
-    if (!setName || supplyList.length === 0) {
-        alert("Enter a set name and generate a supply first!");
-        return;
-    }
-
-    const setCards = supplyList.map(el => el.textContent);
-    savedSets.push({ name: setName, cards: setCards });
-
-    displaySavedSets();
-}
-
-function displaySavedSets() {
-    const savedSetsDiv = document.getElementById("saved-sets");
-    savedSetsDiv.innerHTML = ""; // Clear previous saved sets
-
-    savedSets.forEach(set => {
-        const setElement = document.createElement("div");
-        setElement.className = "saved-set";
-        setElement.innerHTML = `
-            <strong>${set.name}</strong><br>
-            ${set.cards.join("<br>")}
-        `;
-        savedSetsDiv.appendChild(setElement);
-    });
-}
