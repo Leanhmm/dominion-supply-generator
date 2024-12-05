@@ -147,13 +147,14 @@ function generateSupply() {
         usedCards.add(randomCard.name);
     }
 
-// Sort the supply cards by cost (ascending) and rearrange for column layout
+// Sort the supply cards by cost (ascending)
 supply.sort((a, b) => a.cost - b.cost);
 
 let columnSortedSupply = [];
-let numColumns = 5; // Adjust this if the grid size changes
-let numRows = Math.ceil(supply.length / numColumns);
+let numColumns = 5; // 5 columns
+let numRows = Math.ceil(supply.length / numColumns); // Ensure we calculate enough rows
 
+// Arrange the cards into a column-major order (cheapest cards in left-most columns)
 for (let col = 0; col < numColumns; col++) {
     for (let row = 0; row < numRows; row++) {
         let index = row * numColumns + col;
