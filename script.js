@@ -119,7 +119,7 @@ function generateSupply() {
     }
 
     // Generate the supply
-    const supply = [];
+    let supply = [];
     const usedCards = new Set();
 
     if (balancedCost) {
@@ -147,7 +147,7 @@ function generateSupply() {
         usedCards.add(randomCard.name);
     }
 
- // Sort the supply cards by cost (ascending) and rearrange for column layout
+// Sort the supply cards by cost (ascending) and rearrange for column layout
 supply.sort((a, b) => a.cost - b.cost);
 
 let columnSortedSupply = [];
