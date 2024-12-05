@@ -147,8 +147,24 @@ function generateSupply() {
         usedCards.add(randomCard.name);
     }
 
-    // Sort the supply cards by cost (ascending)
-    supply.sort((a, b) => a.cost - b.cost);
+ // Sort the supply cards by cost (ascending) and rearrange for column layout
+supply.sort((a, b) => a.cost - b.cost);
+
+let columnSortedSupply = [];
+let numColumns = 5; // Adjust this if the grid size changes
+let numRows = Math.ceil(supply.length / numColumns);
+
+for (let col = 0; col < numColumns; col++) {
+    for (let row = 0; row < numRows; row++) {
+        let index = row * numColumns + col;
+        if (index < supply.length) {
+            columnSortedSupply.push(supply[index]);
+        }
+    }
+}
+
+// Replace supply with the column-sorted version
+supply = columnSortedSupply;
 
     // Determine additional setup cards
    const additionalCards = getAdditionalSetupCards(supply, filteredCards);
