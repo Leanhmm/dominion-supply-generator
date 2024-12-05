@@ -188,7 +188,6 @@ function getAdditionalSetupCards(supply, filteredCards) {
     const additionalCards = [];
 
     const addCardAndDependencies = card => {
-        // Add the card's dependencies from the map
         if (additionalCardsMap[card.name]) {
             additionalCardsMap[card.name].forEach(extraCard => {
                 if (!additionalCards.find(ac => ac.name === extraCard.name)) {
@@ -201,7 +200,7 @@ function getAdditionalSetupCards(supply, filteredCards) {
     supply.forEach(card => {
         if (!card) {
             console.error("Skipping undefined or invalid card:", card);
-            return; // Skip invalid entries
+            return;
         }
 
         // Add dependencies for cards in the supply
@@ -210,7 +209,11 @@ function getAdditionalSetupCards(supply, filteredCards) {
         // Special case for Young Witch: Add a random card costing 2-3 as an additional card
         if (card.name === "Young Witch") {
             const possibleBaneCards = filteredCards.filter(
-                c => c.cost >= 2 && c.cost <= 3 && c.name !== "Young Witch"
+                c =>
+                    c.cost >= 2 &&
+                    c.cost <= 3 &&
+                    c.name !== "Young Witch" &&
+                    !supply.find(sc => sc.name === c.name) // Exclude cards already in the supply
             );
 
             if (possibleBaneCards.length > 0) {
@@ -230,7 +233,6 @@ function getAdditionalSetupCards(supply, filteredCards) {
 
     return additionalCards;
 }
-
 
 function displaySupply(supply, additionalCards = []) {
     const supplyList = document.getElementById("supply-list");
