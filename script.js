@@ -151,7 +151,8 @@ function generateSupply() {
     supply.sort((a, b) => a.cost - b.cost);
 
     // Determine additional setup cards
-    const additionalCards = getAdditionalSetupCards(supply);
+   const additionalCards = getAdditionalSetupCards(supply, filteredCards);
+
 
     // Call the display function
     displaySupply(supply, additionalCards);
