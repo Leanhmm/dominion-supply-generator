@@ -81,7 +81,7 @@ const guildsCornucopiaCards = [
     { name: "Butcher", cost: 5, type: "Action", image: "images/Butcher.jpg" },
     { name: "Candlestick Maker", cost: 2, type: "Action", image: "images/CandlestickMaker.jpg" },
     { name: "Doctor", cost: 3, type: "Action", image: "images/Doctor.jpg" },
-    { name: "Herald", cost: 3, type: "Action", image: "images/Herald.jpg" },
+    { name: "Herald", cost: 4, type: "Action", image: "images/Herald.jpg" },
     { name: "Hunting Party", cost: 5, type: "Action", image: "images/HuntingParty.jpg" },
     { name: "Jester", cost: 5, type: "Attack, Action", image: "images/Jester.jpg" },
     { name: "Menagerie", cost: 3, type: "Action", image: "images/Menagerie.jpg" },
