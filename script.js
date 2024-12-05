@@ -108,7 +108,7 @@ function generateSupply() {
     const includeGuildsCornucopia = document.getElementById("include-guilds-cornucopia").checked;
 
     // Combine selected sets
-    var filteredCards = [];
+    let filteredCards = [];
     if (includeBaseSet) filteredCards = filteredCards.concat(baseSetCards);
     if (includeDarkAges) filteredCards = filteredCards.concat(darkAgesCards);
     if (includeGuildsCornucopia) filteredCards = filteredCards.concat(guildsCornucopiaCards);
@@ -119,23 +119,32 @@ function generateSupply() {
     }
 
     // Generate the supply
-    var supply = [];
+    const supply = [];
+    const usedCards = new Set();
+
     if (balancedCost) {
         const costs = [2, 3, 4, 5];
         costs.forEach(cost => {
             const costCards = filteredCards.filter(card => card.cost === cost);
             if (costCards.length > 0) {
-             supply.push(costCards[Math.floor(Math.random() * costCards.length + 1)]);
+                let randomCard;
+                do {
+                    randomCard = costCards[Math.floor(Math.random() * costCards.length)];
+                } while (usedCards.has(randomCard.name));
+                supply.push(randomCard);
+                usedCards.add(randomCard.name);
             }
         });
     }
 
     // Add random cards until we have 10
     while (supply.length < 10 && filteredCards.length > 0) {
-     const randomCard = filteredCards[Math.floor(Math.random() * filteredCards.length + 1)];
-        if (!supply.includes(randomCard)) {
-            supply.push(randomCard);
-        }
+        let randomCard;
+        do {
+            randomCard = filteredCards[Math.floor(Math.random() * filteredCards.length)];
+        } while (usedCards.has(randomCard.name));
+        supply.push(randomCard);
+        usedCards.add(randomCard.name);
     }
 
     // Sort the supply cards by cost (ascending)
@@ -177,14 +186,17 @@ function getAdditionalSetupCards(supply) {
 
     const additionalCards = [];
     supply.forEach(card => {
-        if (card && additionalCardsMap[card.name]) {
+        if (!card) {
+            console.error("Skipping undefined or invalid card:", card);
+            return; // Skip invalid entries
+        }
+
+        if (additionalCardsMap[card.name]) {
             additionalCardsMap[card.name].forEach(extraCard => {
                 if (!additionalCards.find(ac => ac.name === extraCard.name)) {
                     additionalCards.push(extraCard);
                 }
             });
-        } else {
-            console.warn("Skipping undefined or invalid card:", card);
         }
     });
 
@@ -227,6 +239,10 @@ function displaySupply(supply, additionalCards = []) {
 
 // Example usage (ensure this is connected to your button):
 document.getElementById("generate-supply").addEventListener("click", generateSupply);
+
+console.log("Filtered Cards:", filteredCards);
+console.log("Final Supply:", supply);
+
 
 
 
