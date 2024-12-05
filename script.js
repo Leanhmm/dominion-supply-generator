@@ -99,6 +99,7 @@ const guildsCornucopiaCards = [
 
 // var savedSets = []; // To store saved sets
 
+//main function, generates set of cards
 function generateSupply() {
     const includeAttack = document.getElementById("include-attack").checked;
     const balancedCost = document.getElementById("balanced-cost").checked;
@@ -107,7 +108,7 @@ function generateSupply() {
     const includeGuildsCornucopia = document.getElementById("include-guilds-cornucopia").checked;
 
     // Combine selected sets
-    var filteredCards = [];
+    let filteredCards = [];
     if (includeBaseSet) filteredCards = filteredCards.concat(baseSetCards);
     if (includeDarkAges) filteredCards = filteredCards.concat(darkAgesCards);
     if (includeGuildsCornucopia) filteredCards = filteredCards.concat(guildsCornucopiaCards);
@@ -118,52 +119,44 @@ function generateSupply() {
     }
 
     // Generate the supply
-    var supply = [];
+    const supply = [];
+    const usedCards = new Set();
+
     if (balancedCost) {
         const costs = [2, 3, 4, 5];
         costs.forEach(cost => {
             const costCards = filteredCards.filter(card => card.cost === cost);
             if (costCards.length > 0) {
-             supply.push(costCards[Math.floor(Math.random() * costCards.length + 1)]);
+                let randomCard;
+                do {
+                    randomCard = costCards[Math.floor(Math.random() * costCards.length)];
+                } while (usedCards.has(randomCard.name));
+                supply.push(randomCard);
+                usedCards.add(randomCard.name);
             }
         });
     }
 
     // Add random cards until we have 10
     while (supply.length < 10 && filteredCards.length > 0) {
-     const randomCard = filteredCards[Math.floor(Math.random() * filteredCards.length + 1)];
-        if (!supply.includes(randomCard)) {
-            supply.push(randomCard);
-        }
+        let randomCard;
+        do {
+            randomCard = filteredCards[Math.floor(Math.random() * filteredCards.length)];
+        } while (usedCards.has(randomCard.name));
+        supply.push(randomCard);
+        usedCards.add(randomCard.name);
     }
 
     // Sort the supply cards by cost (ascending)
     supply.sort((a, b) => a.cost - b.cost);
 
-    // Now we need to split the cards into columns for a 5x2 grid
-    let columnSortedSupply = [];
-    let numColumns = 5;
-    let numRows = 2; // We want 2 rows
-
-    for (let col = 0; col < numColumns; col++) {
-        for (let row = 0; row < numRows; row++) {
-            let index = row * numColumns + col;
-            if (index < supply.length) {
-                columnSortedSupply.push(supply[index]);
-            }
-        }
-    }
-
-    // Replace supply with the new grid arrangement
-    supply = columnSortedSupply;
-
     // Determine additional setup cards
-    const additionalCards = getAdditionalSetupCards(supply);
+   const additionalCards = getAdditionalSetupCards(supply, filteredCards);
+
 
     // Call the display function
     displaySupply(supply, additionalCards);
 }
-
 
 function getAdditionalSetupCards(supply, filteredCards) {
     const additionalCardsMap = {
@@ -278,8 +271,3 @@ document.getElementById("generate-supply").addEventListener("click", generateSup
 
 console.log("Filtered Cards:", filteredCards);
 console.log("Final Supply:", supply);
-
-
-
-
-
