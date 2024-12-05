@@ -150,41 +150,46 @@ function generateSupply() {
 
 function getAdditionalSetupCards(supply) {
     const additionalCardsMap = {
-        "Soothsayer": { name: "Curse", image: "images/Curse.jpg" },
-        "Witch": { name: "Curse", image: "images/Curse.jpg" },
-        "Young Witch": { name: "Curse", image: "images/Curse.jpg" },
-        "Jester": { name: "Curse", image: "images/Curse.jpg" },
-        "Baker": { name: "Coffers", image: "images/Coffers.jpg" },
-       "Butcher": { name: "Coffers", image: "images/Coffers.jpg" },
-       "Candlestick Maker": { name: "Coffers", image: "images/Coffers.jpg" },
-       "Plaza": { name: "Coffers", image: "images/Coffers.jpg" },
-       "Merchant Guild": { name: "Coffers", image: "images/Coffers.jpg" },
-       "Hermit": { name: "Madman", image: "images/Madman.jpg" },
-       "Urchin": { name: "Mercenary", image: "images/Mercenary.jpg" },
-       "Tournament": { name: "Prizes", image: "images/Prizes.jpg" },
-     "Tournament": { name: "Curse", image: "images/Curse.jpg" },
-       "Cultist": { name: "Ruins", image: "images/Ruins.jpg" },
-        "Death Cart": { name: "Ruins", image: "images/Ruins.jpg" },
-        "Marauder": { name: "Ruins", image: "images/Ruins.jpg" },
-        "Marauder": { name: "Spoils", image: "images/Spoils.jpg" },
-            "Pillage": { name: "Spoils", image: "images/Spoils.jpg" },
-            "Bandit Camp": { name: "Spoils", image: "images/Spoils.jpg" },
-
-        // Add other special cards and their setup requirements here
+        "Soothsayer": [{ name: "Curse", image: "images/Curse.jpg" }],
+        "Witch": [{ name: "Curse", image: "images/Curse.jpg" }],
+        "Young Witch": [{ name: "Curse", image: "images/Curse.jpg" }],
+        "Jester": [{ name: "Curse", image: "images/Curse.jpg" }],
+        "Baker": [{ name: "Coffers", image: "images/Coffers.jpg" }],
+        "Butcher": [{ name: "Coffers", image: "images/Coffers.jpg" }],
+        "Candlestick Maker": [{ name: "Coffers", image: "images/Coffers.jpg" }],
+        "Plaza": [{ name: "Coffers", image: "images/Coffers.jpg" }],
+        "Merchant Guild": [{ name: "Coffers", image: "images/Coffers.jpg" }],
+        "Hermit": [{ name: "Madman", image: "images/Madman.jpg" }],
+        "Urchin": [{ name: "Mercenary", image: "images/Mercenary.jpg" }],
+        "Tournament": [
+            { name: "Prizes", image: "images/Prizes.jpg" },
+            { name: "Curse", image: "images/Curse.jpg" }
+        ],
+        "Cultist": [{ name: "Ruins", image: "images/Ruins.jpg" }],
+        "Death Cart": [{ name: "Ruins", image: "images/Ruins.jpg" }],
+        "Marauder": [
+            { name: "Ruins", image: "images/Ruins.jpg" },
+            { name: "Spoils", image: "images/Spoils.jpg" }
+        ],
+        "Pillage": [{ name: "Spoils", image: "images/Spoils.jpg" }],
+        "Bandit Camp": [{ name: "Spoils", image: "images/Spoils.jpg" }]
     };
 
     const additionalCards = [];
     supply.forEach(card => {
         if (additionalCardsMap[card.name]) {
-            const extraCard = additionalCardsMap[card.name];
-            if (!additionalCards.find(ac => ac.name === extraCard.name)) {
-                additionalCards.push(extraCard);
-            }
+            additionalCardsMap[card.name].forEach(extraCard => {
+                // Add only if not already included
+                if (!additionalCards.find(ac => ac.name === extraCard.name)) {
+                    additionalCards.push(extraCard);
+                }
+            });
         }
     });
 
     return additionalCards;
 }
+
 
 function displaySupply(supply, additionalCards = []) {
     const supplyList = document.getElementById("supply-list");
