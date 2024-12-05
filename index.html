@@ -22,11 +22,25 @@
     /* Style for the supply list grid */
     #supply-list {
         display: grid;
-        grid-template-rows: repeat(5, 1fr); /* 5 rows for column-based layout */
-        grid-auto-flow: column; /* Fill items by columns instead of rows */
+        grid-template-columns: repeat(5, 1fr); /* 5 columns */
+        grid-template-rows: repeat(2, auto); /* 2 rows, auto height */
         gap: 16px; /* Space between grid items */
         max-width: 1000px; /* Optional: Set max width for the grid */
         margin: 0 auto; /* Center the grid */
+    }
+
+    /* Ensure cards are correctly sized */
+    .card {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .card img {
+        width: 100%; /* Images take full width of the grid cell */
+        height: auto; /* Maintain aspect ratio */
+        border-radius: 8px; /* Rounded corners */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add shadow */
     }
 
     /* Style for individual card elements */
