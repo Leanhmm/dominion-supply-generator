@@ -238,15 +238,42 @@ function displaySupply(supply, additionalCards = []) {
     const supplyList = document.getElementById("supply-list");
     supplyList.innerHTML = ""; // Clear previous supply
 
-    // Display the 10 sorted cards
-    supply.forEach(card => {
-        const cardElement = document.createElement("div");
-        cardElement.classList.add("card");
-        cardElement.innerHTML = `
-            <img src="${card.image}" alt="${card.name}">
-        `;
-        supplyList.appendChild(cardElement);
+    // Create a container for the 2x5 grid
+    const gridContainer = document.createElement("div");
+    gridContainer.classList.add("grid-container");
+
+    // Prepare a grid structure with columns
+    const columns = 5; // Number of columns
+    const rows = Math.ceil(supply.length / columns); // Determine rows dynamically
+
+    // Initialize a 2D array for the grid
+    const grid = Array.from({ length: columns }, () => []);
+
+    // Fill the grid column by column
+    supply.forEach((card, index) => {
+        const colIndex = index % columns;
+        grid[colIndex].push(card);
     });
+
+    // Append cards to the grid container column by column
+    grid.forEach(column => {
+        const columnDiv = document.createElement("div");
+        columnDiv.classList.add("grid-column");
+
+        column.forEach(card => {
+            const cardElement = document.createElement("div");
+            cardElement.classList.add("card");
+            cardElement.innerHTML = `
+                <img src="${card.image}" alt="${card.name}">
+            `;
+            columnDiv.appendChild(cardElement);
+        });
+
+        gridContainer.appendChild(columnDiv);
+    });
+
+    // Add the grid container to the supply list
+    supplyList.appendChild(gridContainer);
 
     // Display additional setup cards
     if (additionalCards.length > 0) {
