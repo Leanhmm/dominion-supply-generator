@@ -244,7 +244,6 @@ function displaySupply(supply, additionalCards = []) {
         cardElement.classList.add("card");
         cardElement.innerHTML = `
             <img src="${card.image}" alt="${card.name}">
-            <p>${card.name} (${card.cost})</p>
         `;
         supplyList.appendChild(cardElement);
     });
@@ -260,12 +259,12 @@ function displaySupply(supply, additionalCards = []) {
             extraCardElement.classList.add("card");
             extraCardElement.innerHTML = `
                 <img src="${extraCard.image}" alt="${extraCard.name}">
-                <p>${extraCard.name}</p>
             `;
             supplyList.appendChild(extraCardElement);
         });
     }
 }
+
 
 // Example usage (ensure this is connected to your button):
 document.getElementById("generate-supply").addEventListener("click", generateSupply);
