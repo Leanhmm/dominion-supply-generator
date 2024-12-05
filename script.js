@@ -177,13 +177,14 @@ function getAdditionalSetupCards(supply) {
 
     const additionalCards = [];
     supply.forEach(card => {
-        if (additionalCardsMap[card.name]) {
+        if (card && additionalCardsMap[card.name]) {
             additionalCardsMap[card.name].forEach(extraCard => {
-                // Add only if not already included
                 if (!additionalCards.find(ac => ac.name === extraCard.name)) {
                     additionalCards.push(extraCard);
                 }
             });
+        } else {
+            console.warn("Skipping undefined or invalid card:", card);
         }
     });
 
