@@ -158,7 +158,7 @@ function generateSupply() {
     supply = columnSortedSupply;
 
     // Determine additional setup cards
-    const additionalCards = getAdditionalSetupCards(supply, additionalCards);
+    const additionalCards = getAdditionalSetupCards(supply);
 
     // Call the display function
     displaySupply(supply, additionalCards);
