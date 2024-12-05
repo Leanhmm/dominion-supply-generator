@@ -125,16 +125,14 @@ function generateSupply() {
         costs.forEach(cost => {
             const costCards = filteredCards.filter(card => card.cost === cost);
             if (costCards.length > 0) {
-                supply.push(costCards[Math.floor(Math.random() * costCards.length)]);
-             //supply.push(costCards[Math.floor(Math.random() * costCards.length + 1)]);
+             supply.push(costCards[Math.floor(Math.random() * costCards.length + 1)]);
             }
         });
     }
 
     // Add random cards until we have 10
     while (supply.length < 10 && filteredCards.length > 0) {
-        const randomCard = filteredCards[Math.floor(Math.random() * filteredCards.length)];
-     //const randomCard = filteredCards[Math.floor(Math.random() * filteredCards.length + 1)];
+     const randomCard = filteredCards[Math.floor(Math.random() * filteredCards.length + 1)];
         if (!supply.includes(randomCard)) {
             supply.push(randomCard);
         }
