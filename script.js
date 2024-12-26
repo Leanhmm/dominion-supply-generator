@@ -97,6 +97,37 @@ const guildsCornucopiaCards = [
     { name: "Taxman", cost: 4, type: "Attack, Action", image: "images/Taxman.jpg" }
 ];
 
+const seasideCards = [
+ { name: "Astrolabe", cost: 3, type: "Action, Treasure", image: "images/Astrolabe.jpg" },
+ { name: "Bazaar", cost: 5, type: "Action", image: "images/Bazaar.jpg" },
+ { name: "Blockade", cost: 4, type: "Action, Attack", image: "images/Blockade.jpg" },
+ { name: "Caravan", cost: 4, type: "Action", image: "images/Caravan.jpg" },
+ { name: "Corsair", cost: 5, type: "Action, Attack", image: "images/Corsair.jpg" },
+ { name: "Cutpurse", cost: 4, type: "Action, Attack", image: "images/Cutpurse.jpg" },
+ { name: "Fishing Village", cost: 3, type: "Action", image: "images/FishingVillage.jpg" }, 
+ { name: "Haven", cost: 2, type: "Action", image: "images/Haven.jpg" },
+ { name: "Island", cost: 4, type: "Action, Victory", image: "images/Island.jpg" },
+ { name: "Lighthouse", cost: 2, type: "Action", image: "images/Lighthouse.jpg" },
+ { name: "Lookout", cost: 3, type: "Action", image: "images/Lookout.jpg" },
+ { name: "Merchant Ship", cost: 5, type: "Action", image: "images/MerchantShip.jpg" },
+ { name: "Monkey", cost: 3, type: "Action", image: "images/Monkey.jpg" },
+ { name: "Native Village", cost: 2, type: "Action", image: "images/NativeVillage.jpg" },
+ { name: "Outpost", cost: 5, type: "Action", image: "images/Outpost.jpg" },
+ { name: "Pirate", cost: 5, type: "Action, Reaction", image: "images/Pirate.jpg" },
+ { name: "Sailor", cost: 4, type: "Action", image: "images/Sailor.jpg" },
+ { name: "Salvager", cost: 4, type: "Action", image: "images/Salvager.jpg" },
+ { name: "Sea Chart", cost: 3, type: "Action", image: "images/SeaChart.jpg" },
+ { name: "Sea Witch", cost: 5, type: "Action", image: "images/SeaWitch.jpg" },
+ { name: "Smugglers", cost: 3, type: "Action", image: "images/Smugglers.jpg" },
+ { name: "Tactician", cost: 5, type: "Action", image: "images/Tactician.jpg" },
+ { name: "Tide Pools", cost: 4, type: "Action", image: "images/TidePools.jpg" },
+ { name: "Treasure Map", cost: 4, type: "Action", image: "images/TreasureMap.jpg" },
+ { name: "Treasury", cost: 5, type: "Action", image: "images/Treasury.jpg" },
+ { name: "Warehouse", cost: 3, type: "Action", image: "images/Warehouse.jpg" },
+ { name: "Wharf", cost: 5, type: "Action", image: "images/Wharf.jpg" },
+];
+
+
 // var savedSets = []; // To store saved sets
 
 //main function, generates set of cards
@@ -106,12 +137,14 @@ function generateSupply() {
     const includeBaseSet = document.getElementById("include-base-set").checked;
     const includeDarkAges = document.getElementById("include-dark-ages").checked;
     const includeGuildsCornucopia = document.getElementById("include-guilds-cornucopia").checked;
+  const includeSeaside = document.getElementById("include-seaside").checked;
 
     // Combine selected sets
     let filteredCards = [];
     if (includeBaseSet) filteredCards = filteredCards.concat(baseSetCards);
     if (includeDarkAges) filteredCards = filteredCards.concat(darkAgesCards);
     if (includeGuildsCornucopia) filteredCards = filteredCards.concat(guildsCornucopiaCards);
+    if (includeSeaside) filteredCards = filteredCards.concat(seasideCards);
 
     // Apply the "Include Attack" filter
     if (!includeAttack) {
