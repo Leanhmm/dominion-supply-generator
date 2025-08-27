@@ -248,7 +248,7 @@ function getAdditionalSetupCards(supply, filteredCards) {
         "Native Village": [{ name: "Native Village Mat", image: "images/NativeVillageMat.jpg" }],
         "Blockade": [{ name: "Curse", image: "images/Curse.jpg" }],
         "Sea Witch": [{ name: "Curse", image: "images/Curse.jpg" }],
-        "Bandit Camp": [{ name: "Spoils", image: "images/Spoils.jpg" }]
+        "Bandit Camp": [{ name: "Spoils", image: "images/Spoils.jpg" }],
         "Bishop": [{ name: "VP", image: "images/VP.jpg" }],
         "Collection": [{ name: "VP", image: "images/VP.jpg" }],
         "Investment": [{ name: "VP", image: "images/VP.jpg" }],
