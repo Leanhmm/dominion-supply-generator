@@ -127,6 +127,32 @@ const seasideCards = [
  { name: "Wharf", cost: 5, type: "Action", image: "images/Wharf.jpg" },
 ];
 
+const prosperityCards = [
+ { name: "Anvil", cost: 3, type: "Treasure", image: "images/Anvil.jpg" },
+ { name: "Bank", cost: 7, type: "Treasure", image: "images/Bank.jpg" },
+ { name: "Bishop", cost: 4, type: "Action", image: "images/Bishop.jpg" },
+ { name: "Charlatan", cost: 5, type: "Action, Attack", image: "images/Charlatan.jpg" },
+ { name: "City", cost: 5, type: "Action", image: "images/City.jpg" },
+ { name: "Clerk", cost: 4, type: "Action, Reaction, Attack", image: "images/Clerk.jpg" },
+ { name: "Collection", cost: 5, type: "Treasure", image: "images/Collection.jpg" },
+ { name: "Crystal Ball", cost: 5, type: "Treasure", image: "images/CrystalBall.jpg" },
+ { name: "Expand", cost: 7, type: "Action", image: "images/Expand.jpg" },
+ { name: "Forge", cost: 7, type: "Action", image: "images/Forge.jpg" },
+ { name: "Grand Market", cost: 6, type: "Action", image: "images/GrandMarket.jpg" },
+ { name: "Hoard", cost: 6, type: "Treasure", image: "images/Hoard.jpg" },
+ { name: "Investment", cost: 4, type: "Treasure", image: "images/Investment.jpg" },
+ { name: "King's Court", cost: 7, type: "Action", image: "images/King'sCourt.jpg" },
+ { name: "Magnate", cost: 5, type: "Action", image: "images/Magnate.jpg" },
+ { name: "Mint", cost: 5, type: "Action", image: "images/Mint.jpg" },
+ { name: "Monument", cost: 4, type: "Action", image: "images/Monument.jpg" },
+ { name: "Peddler", cost: 8, type: "Action", image: "images/Peddler.jpg" },
+ { name: "Quarry", cost: 4, type: "Treasure", image: "images/Quarry.jpg" },
+ { name: "Rabble", cost: 5, type: "Action, Attack", image: "images/Rabble.jpg" },
+ { name: "Tiara", cost: 4, type: "Treasure", image: "images/Tiara.jpg" },
+ { name: "Vault", cost: 5, type: "Action", image: "images/Vault.jpg" },
+ { name: "War Chest", cost: 5, type: "Treasure", image: "images/WarChest.jpg" },
+ { name: "Watchtower", cost: 3, type: "Action, Reaction", image: "images/Watchtower.jpg" },
+ { name: "Worker's Village", cost: 4, type: "Action", image: "images/Worker'sVillage.jpg" },
 
 // var savedSets = []; // To store saved sets
 
@@ -137,7 +163,8 @@ function generateSupply() {
     const includeBaseSet = document.getElementById("include-base-set").checked;
     const includeDarkAges = document.getElementById("include-dark-ages").checked;
     const includeGuildsCornucopia = document.getElementById("include-guilds-cornucopia").checked;
-  const includeSeaside = document.getElementById("include-seaside").checked;
+    const includeSeaside = document.getElementById("include-seaside").checked;
+    const includeProsperity = document.getElementById("include-prosperity").checked;
 
     // Combine selected sets
     let filteredCards = [];
@@ -145,6 +172,7 @@ function generateSupply() {
     if (includeDarkAges) filteredCards = filteredCards.concat(darkAgesCards);
     if (includeGuildsCornucopia) filteredCards = filteredCards.concat(guildsCornucopiaCards);
     if (includeSeaside) filteredCards = filteredCards.concat(seasideCards);
+    if (includeProsperity) filteredCards = filteredCards.concat(prosperityCards);
 
     // Apply the "Include Attack" filter
     if (!includeAttack) {
