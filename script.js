@@ -153,6 +153,7 @@ const prosperityCards = [
  { name: "War Chest", cost: 5, type: "Treasure", image: "images/WarChest.jpg" },
  { name: "Watchtower", cost: 3, type: "Action, Reaction", image: "images/Watchtower.jpg" },
  { name: "Worker's Village", cost: 4, type: "Action", image: "images/Worker'sVillage.jpg" },
+ ];
 
 // var savedSets = []; // To store saved sets
 
