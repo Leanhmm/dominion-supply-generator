@@ -155,6 +155,34 @@ const prosperityCards = [
  { name: "Worker's Village", cost: 4, type: "Action", image: "images/Worker'sVillage.jpg" },
  ];
 
+const empiresCards = [
+ { name: "Archive", cost: 5, type: "Action", image: "images/Archive.jpg" },
+ { name: "Capital", cost: 5, type: "Treasure", image: "images/Capital.jpg" },
+ { name: "Castles", cost: 3, type: "Victory, Action", image: "images/Castles.jpg" },
+ { name: "Catapult/Rocks", cost: 3, type: "Action, Attack", image: "images/CatapultRocks.jpg" },
+ { name: "Chariot Race", cost: 3, type: "Action", image: "images/ChariotRace.jpg" },
+ { name: "Charm", cost: 5, type: "Treasure", image: "images/Charm.jpg" },
+ { name: "City Quarter", cost: 8, type: "Action", image: "images/CityQuarter.jpg" },
+ { name: "Crown", cost: 5, type: "Action, Treasure", image: "images/Crown.jpg" },
+ { name: "Encampment/Plunder", cost: 2, type: "Action", image: "images/EncampmentPlunder.jpg" },
+ { name: "Enchantress", cost: 3, type: "Action, Attack", image: "images/Enchantress.jpg" },
+ { name: "Engineer", cost: 4, type: "Action", image: "images/Engineer.jpg" },
+ { name: "Farmers' Market", cost: 3, type: "Action", image: "images/Farmers'Market.jpg" },
+ { name: "Forum", cost: 5, type: "Action", image: "images/Forum.jpg" },
+ { name: "Gladiator/Fortune", cost: 3, type: "Action", image: "images/GladiatorFortune.jpg" },
+ { name: "Groundskeeper", cost: 5, type: "Action", image: "images/Groundskeeper.jpg" },
+ { name: "Legionary", cost: 5, type: "Action, Attack", image: "images/Legionary.jpg" },
+ { name: "Overlord", cost: 8, type: "Action", image: "images/Overlord.jpg" },
+ { name: "Patrician/Emporium", cost: 2, type: "Action", image: "images/PatricianEmporium.jpg" },
+ { name: "Royal Blacksmith", cost: 8, type: "Action", image: "images/RoyalBlacksmith.jpg" },
+ { name: "Sacrifice", cost: 4, type: "Action", image: "images/Sacrifice.jpg" },
+ { name: "Settlers/Bustling Village", cost: 2, type: "Action", image: "images/SettlersBustlingVillage.jpg" },
+ { name: "Temple", cost: 4, type: "Action", image: "images/Temple.jpg" },
+ { name: "Villa", cost: 4, type: "Action", image: "images/Villa.jpg" },
+ { name: "Wild Hunt", cost: 5, type: "Action", image: "images/WildHunt.jpg" }
+
+ ];
+
 // var savedSets = []; // To store saved sets
 
 //main function, generates set of cards
@@ -166,6 +194,7 @@ function generateSupply() {
     const includeGuildsCornucopia = document.getElementById("include-guilds-cornucopia").checked;
     const includeSeaside = document.getElementById("include-seaside").checked;
     const includeProsperity = document.getElementById("include-prosperity").checked;
+    const includeEmpires = document.getElementById("include-empires").checked;
 
     // Combine selected sets
     let filteredCards = [];
@@ -174,6 +203,7 @@ function generateSupply() {
     if (includeGuildsCornucopia) filteredCards = filteredCards.concat(guildsCornucopiaCards);
     if (includeSeaside) filteredCards = filteredCards.concat(seasideCards);
     if (includeProsperity) filteredCards = filteredCards.concat(prosperityCards);
+    if (includeEmpires) filteredCards = filteredCards.concat(empiresCards);
 
     // Apply the "Include Attack" filter
     if (!includeAttack) {
@@ -252,7 +282,23 @@ function getAdditionalSetupCards(supply, filteredCards) {
         "Bishop": [{ name: "VP", image: "images/VP.jpg" }],
         "Collection": [{ name: "VP", image: "images/VP.jpg" }],
         "Investment": [{ name: "VP", image: "images/VP.jpg" }],
-        "Monument": [{ name: "VP", image: "images/VP.jpg" }]
+        "Monument": [{ name: "VP", image: "images/VP.jpg" }],
+        "Capital": [{ name: "Debt", image: "images/Debt.jpg" }],
+        "Castles": [{ name: "VP", image: "images/VP.jpg" }],
+        "Catapult/Rocks": [{ name: "Curse", image: "images/Curse.jpg" }],
+        "Chariot Race": [{ name: "VP", image: "images/VP.jpg" }],
+        "City Quarter": [{ name: "Debt", image: "images/Debt.jpg" }],
+        "Encampment/Plunder": [{ name: "VP", image: "images/VP.jpg" }],
+        "Engineer": [{ name: "Debt", image: "images/Debt.jpg" }],
+        "Farmers' Market": [{ name: "VP", image: "images/VP.jpg" }],
+        "Gladiator/Fortune": [{ name: "Debt", image: "images/Debt.jpg" }],
+        "Groundskeeper": [{ name: "VP", image: "images/VP.jpg" }],
+        "Overlord": [{ name: "Debt", image: "images/Debt.jpg" }],
+        "Patrician/Emporium": [{ name: "VP", image: "images/VP.jpg" }],
+        "Royal Blacksmith": [{ name: "Debt", image: "images/Debt.jpg" }],
+        "Sacrifice": [{ name: "VP", image: "images/VP.jpg" }],
+        "Temple": [{ name: "VP", image: "images/VP.jpg" }],
+        "Wild Hunt": [{ name: "VP", image: "images/VP.jpg" }],
     };
 
     const additionalCards = [];
